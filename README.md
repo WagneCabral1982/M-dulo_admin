@@ -1,3 +1,3 @@
 # Modulo_admin
 
-https://github.com/WagneCabral1982/M-dulo_admin.git
+https://wagnecabral1982.github.io/M-dulo_admin/
