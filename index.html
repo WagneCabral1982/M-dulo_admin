@@ -483,6 +483,21 @@
         .kpi-card .label { 
             color: var(--text-light); 
         }
+
+        .forgot-password-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.forgot-password-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.forgot-password-link a:hover {
+    text-decoration: underline;
+}
     </style>
 </head>
 <body>
@@ -710,6 +725,11 @@
                 });
             }
         });
+
+function handleForgotPassword(event) {
+    event.preventDefault(); // Impede o link de navegar
+    alert('Em uma aplicação real, isso iniciaria o fluxo de recuperação de senha.');
+}
 
         function toggleDropdown(element) {
             event.preventDefault();
