@@ -491,18 +491,23 @@
         <div class="login-container">
             <h1>PE sem Fome</h1>
             <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="input-group">
-                    <label for="username">Usuário</label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="login-button">Entrar</button>
-                <div id="loginError" class="login-error hidden">Usuário ou senha inválidos.</div>
-            </form>
-        </div>
+            <div class="input-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="login-button">Entrar</button>
+
+            <div class="forgot-password-link">
+                <a href="#" onclick="handleForgotPassword(event)">Esqueci minha senha</a>
+            </div>
+
+            <div id="loginError" class="login-error hidden">Usuário ou senha inválidos.</div>
+        </form>
+       </div>
     </div>
 
     <!-- PAINEL ADMINISTRATIVO -->
