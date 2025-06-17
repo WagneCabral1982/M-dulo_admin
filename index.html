@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo - PE sem Fome</title>
-    <!-- Incluindo Chart.js para os gráficos -->
+    <title>PE sem Fome - Sistema Administrativo</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- IDENTIDADE VISUAL BASEADA NO FIGMA --- */
         :root {
-            --primary-color: #3F51B5; /* Azul primário */
-            --secondary-color: #4CAF50; /* Verde para sucesso/ações */
+            --primary-color: #3F51B5;
+            --secondary-color: #4CAF50;
+            --danger-color: #F44336;
+            --warning-color: #FF9800;
+            --info-color: #2196F3;
             --background-light: #F5F7FA;
             --background-white: #FFFFFF;
             --text-dark: #333333;
@@ -19,219 +21,501 @@
             --shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        /* --- ESTILOS GERAIS --- */
-        body { 
-            margin: 0; 
-            font-family: 'Roboto', 'Segoe UI', sans-serif; 
-            background-color: var(--background-light); 
-            color: var(--text-dark); 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        * { box-sizing: border-box; }
-        .hidden { display: none !important; }
 
-        /* --- NAVEGAÇÃO --- */
-        .main-nav ul {
+        body {
+            background-color: var(--background-light);
+            color: var(--text-dark);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Layout Principal */
+        .app-container {
+            display: grid;
+            grid-template-areas: 
+                "header header"
+                "sidebar main";
+            grid-template-columns: 240px 1fr;
+            grid-template-rows: 60px 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .app-header {
+            grid-area: header;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Sidebar */
+        .app-sidebar {
+            grid-area: sidebar;
+            background-color: var(--background-white);
+            border-right: 1px solid var(--border-color);
+            padding: 20px 0;
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+        
+        .nav-menu {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
-        .main-nav > ul > li {
-            position: relative;
-            display: inline-block;
-        }
-
-        .main-nav > ul > li > a {
-            display: block;
-            padding: 15px 20px;
-            text-decoration: none;
-            color: var(--text-light);
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .main-nav > ul > li > a:hover {
-            color: var(--primary-color);
-        }
-
-        .dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--background-white);
-            min-width: 220px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 10px 0;
-            border-radius: 5px;
-        }
-
-        .dropdown li a {
-            padding: 12px 20px;
-            display: block;
-            text-decoration: none;
-            color: var(--text-dark);
-        }
-
-        .dropdown li a:hover {
-            background-color: var(--background-light);
-        }
-
-        /* --- TELA DE LOGIN --- */
-        .login-wrapper { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            min-height: 100vh; 
-        }
-        .login-container { 
-            width: 100%; 
-            max-width: 400px; 
-            padding: 40px; 
-            background-color: var(--background-white); 
-            border-radius: 8px; 
-            box-shadow: var(--shadow); 
-        }
-        .login-container h1 { 
-            text-align: center; 
-            margin-top: 0; 
-            font-size: 1.8em; 
-        }
-        .login-form .input-group { 
-            margin-bottom: 20px; 
-        }
-        .login-form label { 
-            display: block; 
-            font-weight: 500; 
-            margin-bottom: 8px; 
-        }
-        .login-form input { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid var(--border-color); 
-            border-radius: 6px; 
-        }
-        .login-form .login-button { 
-            width: 100%; 
-            padding: 12px; 
-            background-color: var(--primary-color); 
-            color: white; 
-            border: none; 
-            border-radius: 6px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            font-size: 1em; 
-        }
-        .login-error { 
-            color: #d9534f; 
-            text-align: center; 
-            margin-top: 15px; 
-        }
-
-        /* --- ESTRUTURA PRINCIPAL DO PAINEL --- */
-        .main-header { 
-            background-color: var(--primary-color); 
-            padding: 12px 30px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            color: white; 
-        }
-        .header-title { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            font-size: 1.2em; 
-            font-weight: 500; 
-        }
-        .user-info { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-        }
-        .user-info .logout-btn { 
-            background: none; 
-            border: 1px solid rgba(255,255,255,0.5); 
-            color: white; 
-            padding: 8px 15px; 
-            border-radius: 5px; 
-            cursor: pointer; 
-        }
-        .main-nav { 
-            background-color: var(--background-white); 
-            box-shadow: var(--shadow); 
-            padding: 0 20px;
-        }
-        .main-content { 
-            padding: 25px; 
-        }
-        .breadcrumbs { 
-            margin-bottom: 20px; 
-            font-size: 0.9em; 
-            color: var(--text-light); 
-        }
-        .content-box { 
-            background-color: var(--background-white); 
-            padding: 25px; 
-            border-radius: 8px; 
-            box-shadow: var(--shadow); 
-        }
-        .filter-box { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 15px; 
-            align-items: center; 
-            margin-bottom: 25px; 
-        }
-        .filter-box input, 
-        .filter-box select { 
-            padding: 10px; 
-            border-radius: 5px; 
-            border: 1px solid var(--border-color); 
-            font-size: 0.9em; 
-        }
-        .filter-button {
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .action-button { 
-            padding: 10px; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            background-color: var(--primary-color); 
-            color: white; 
-            font-size: 1.1em; 
-            line-height: 1; 
-        }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-        }
-        th, td { 
-            padding: 12px 15px; 
-            border-bottom: 1px solid var(--border-color); 
-            text-align: left; 
-            font-size: 0.9em; 
-        }
-        thead th { 
-            background-color: #f8f9fa; 
-            font-weight: 500; 
-            color: var(--text-light); 
-        }
-        .no-data { 
-            text-align: center; 
-            padding: 40px; 
-            color: #999; 
+        
+        .nav-item {
+            margin-bottom: 5px;
         }
         
-        /* Switch de Ativação/Inativação */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(63, 81, 181, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .nav-link.active {
+            background-color: rgba(63, 81, 181, 0.2);
+            color: var(--primary-color);
+            border-left: 3px solid var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .submenu {
+            padding-left: 40px;
+        }
+        
+        /* Main Content */
+        .app-main {
+            grid-area: main;
+            padding: 20px;
+            background-color: var(--background-light);
+            overflow-y: auto;
+            height: calc(100vh - 60px);
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Cards e Tabelas */
+        .card {
+            background-color: var(--background-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        
+        tr:hover {
+            background-color: rgba(63, 81, 181, 0.03);
+        }
+        
+        /* KPIs */
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .kpi-card {
+            background-color: var(--background-white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .kpi-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .kpi-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .kpi-label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        /* Gráficos */
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .chart-box {
+            background-color: var(--background-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+        }
+        
+        .chart-title {
+            margin: 0 0 15px 0;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .chart-wrapper {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+        
+        /* Formulários e Filtros */
+        .filter-box {
+            background-color: var(--background-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        /* Botões */
+        .btn {
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3345a0;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #3d8b40;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(63, 81, 181, 0.1);
+        }
+        
+        /* Login */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a3a8a 100%);
+        }
+        
+        .login-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            padding: 35px;
+            text-align: center;
+        }
+        
+        .login-title {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .login-title h1 {
+            font-weight: 600;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .input-icon {
+            position: relative;
+        }
+        
+        .input-icon i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .input-icon input {
+            padding-left: 40px;
+        }
+        
+        #loginError {
+            color: var(--danger-color);
+            margin-top: 15px;
+            text-align: center;
+            background: rgba(244, 67, 54, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+        
+        .forgot-password a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .app-footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        /* Permissões */
+        .permissions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .permission-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Switch */
         .switch {
             position: relative;
             display: inline-block;
@@ -239,7 +523,7 @@
             height: 24px;
         }
         
-        .switch input { 
+        .switch input {
             opacity: 0;
             width: 0;
             height: 0;
@@ -277,413 +561,280 @@
             transform: translateX(26px);
         }
         
-        /* Botões de Exportação */
-        .export-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "main";
+            }
+            
+            .app-sidebar {
+                display: none;
+            }
+            
+            .chart-container {
+                grid-template-columns: 1fr;
+            }
         }
-        
-        .export-btn {
-            padding: 8px 15px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.9em;
-        }
-        
-        .export-btn i {
-            font-style: normal;
-        }
-        
-        /* Ações na tabela */
-        .table-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .table-actions .edit-btn {
-            color: var(--primary-color);
-            cursor: pointer;
-        }
-        
-        .table-actions .delete-btn {
-            color: #d9534f;
-            cursor: pointer;
-        }
-
-        /* --- ESTILOS PARA GRÁFICOS --- */
-        .chart-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .chart-box {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-        
-        .chart-title {
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-            font-size: 1.1em;
-            font-weight: 500;
-        }
-        
-        .chart-wrapper {
-            width: 100%;
-            height: 300px;
-            position: relative;
-        }
-        
-        /* --- MODAIS DE CADASTRO --- */
-        .modal-overlay { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0,0,0,0.6); 
-            z-index: 20; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .modal-content { 
-            background-color: var(--background-white); 
-            border-radius: 8px; 
-            width: 90%; 
-        }
-        .modal-content.modal-sm { 
-            max-width: 600px; 
-        }
-        .modal-content.modal-lg { 
-            max-width: 800px; 
-        }
-        .modal-header { 
-            padding: 15px 25px; 
-            background-color: var(--primary-color); 
-            color: white; 
-            border-radius: 8px 8px 0 0; 
-            font-size: 1.1em; 
-            font-weight: 500; 
-        }
-        .modal-body { 
-            padding: 25px; 
-        }
-        .modal-body .input-group { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 20px; 
-            margin-bottom: 15px; 
-        }
-        .modal-body .input-group > div { 
-            flex: 1; 
-            min-width: 200px; 
-        }
-        .modal-body label { 
-            font-size: 0.9em; 
-            margin-bottom: 5px; 
-            display: block; 
-            color: var(--text-light); 
-        }
-        .modal-body input, 
-        .modal-body select { 
-            width: 100%; 
-            padding: 10px; 
-            border-radius: 5px; 
-            border: 1px solid var(--border-color); 
-        }
-        .modal-footer { 
-            padding: 15px 25px; 
-            text-align: right; 
-            background-color: #f5f5f5; 
-            border-radius: 0 0 8px 8px; 
-            border-top: 1px solid var(--border-color); 
-        }
-        .modal-footer button { 
-            padding: 10px 20px; 
-            border-radius: 5px; 
-            border: 1px solid; 
-            cursor: pointer; 
-            font-weight: bold; 
-        }
-        .modal-footer .btn-save { 
-            background-color: var(--secondary-color); 
-            color: white; 
-            border-color: var(--secondary-color); 
-        }
-        .modal-footer .btn-cancel { 
-            background-color: transparent; 
-            color: #555; 
-            border-color: #ccc; 
-        }
-        .permission-selector { 
-            display: flex; 
-            gap: 20px; 
-            align-items: flex-start; 
-        }
-        .permission-box { 
-            flex: 1; 
-            border: 1px solid var(--border-color); 
-            padding: 10px; 
-            border-radius: 5px; 
-        }
-        .permission-box h4 { 
-            margin-top: 0; 
-        }
-        .permission-box select { 
-            width: 100%; 
-            height: 150px; 
-            border: none; 
-        }
-        .permission-buttons { 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            gap: 10px; 
-            align-self: center; 
-        }
-        
-        /* --- ESTILOS DO DASHBOARD (Relatório) --- */
-        .report-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 20px; 
-        }
-        .kpi-container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-            gap: 20px; 
-            margin-bottom: 30px; 
-        }
-        .kpi-card { 
-            background-color: #fff; 
-            padding: 20px; 
-            border-radius: 8px; 
-            text-align: center; 
-            box-shadow: var(--shadow); 
-        }
-        .kpi-card .value { 
-            font-size: 2.2em; 
-            font-weight: 700; 
-            color: var(--primary-color); 
-        }
-        .kpi-card .label { 
-            color: var(--text-light); 
-        }
-
-        .forgot-password-link {
-    text-align: center;
-    margin-top: 15px;
-}
-
-.forgot-password-link a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-size: 0.9em;
-}
-
-.forgot-password-link a:hover {
-    text-decoration: underline;
-}
     </style>
 </head>
 <body>
-    <!-- TELA DE LOGIN -->
-    <div id="login-page" class="login-wrapper">
-        <div class="login-container">
-            <h1>PE sem Fome</h1>
-            <form id="loginForm" onsubmit="handleLogin(event)">
-            <div class="input-group">
-                <label for="username">Usuário</label>
-                <input type="text" id="username" required>
+    <!-- Tela de Login -->
+    <div id="login-page" class="login-container">
+        <div class="login-card">
+            <div class="login-title">
+                <i class="fas fa-utensils fa-2x"></i>
+                <h1>PE sem Fome</h1>
             </div>
-            <div class="input-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" required>
-            </div>
-            <button type="submit" class="login-button">Entrar</button>
-
-            <div class="forgot-password-link">
-                <a href="#" onclick="handleForgotPassword(event)">Esqueci minha senha</a>
-            </div>
-
-            <div id="loginError" class="login-error hidden">Usuário ou senha inválidos.</div>
-        </form>
-       </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Usuário</label>
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" class="form-control" placeholder="Digite seu usuário" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Senha</label>
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" class="form-control" placeholder="Digite sua senha" required>
+                    </div>
+                </div>
+                
+                <div class="forgot-password">
+                    <a href="#">Esqueceu sua senha?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </button>
+                
+                <div id="loginError" class="hidden">
+                    <i class="fas fa-exclamation-circle"></i> Usuário ou senha inválidos
+                </div>
+            </form>
+        </div>
     </div>
 
-    <!-- PAINEL ADMINISTRATIVO -->
-    <div id="admin-panel" class="hidden">
-        <header class="main-header">
-            <div class="header-title">PE sem Fome</div>
-            <div class="user-info">
-                <span>WAGNE CABRAL</span>
-                <button class="logout-btn" onclick="handleLogout()">SAIR</button>
+    <!-- Aplicação Principal -->
+    <div id="admin-panel" class="app-container hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-title">
+                <i class="fas fa-utensils"></i>
+                PE sem Fome - Administração
+            </div>
+            <div class="user-menu">
+                <span id="current-user">Administrador</span>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
             </div>
         </header>
         
-        <nav class="main-nav">
-            <ul>
-                <li>
-                    <a href="#" onclick="toggleDropdown(this)">CADASTRO</a>
-                    <ul class="dropdown">
-                        <li><a href="#" onclick="showPage('page-permissoes')">Permissão</a></li>
-                        <li><a href="#" onclick="showPage('page-perfis')">Perfil</a></li>
-                        <li><a href="#" onclick="showPage('page-usuarios')">Usuário</a></li>
+        <!-- Sidebar -->
+        <nav class="app-sidebar">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" onclick="showPage('dashboard')">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showPage('users')">
+                        <i class="fas fa-users"></i> Usuários
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showPage('roles')">
+                        <i class="fas fa-user-shield"></i> Perfis
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleSubmenu(this)">
+                        <i class="fas fa-chart-bar"></i> Relatórios
+                        <i class="fas fa-chevron-down" style="margin-left: auto;"></i>
+                    </a>
+                    <ul class="submenu nav-menu" style="display: none;">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="showPage('report-municipality')">
+                                <i class="fas fa-map-marker-alt"></i> Indivíduo por Município
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-utensils"></i> Cozinhas Comunitárias
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-building"></i> Equipamentos Sociais
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#" onclick="toggleDropdown(this)">RELATÓRIOS</a>
-                    <ul class="dropdown">
-                        <li><a href="#" onclick="showPage('page-relatorio')">Relatório Indivíduo por Município</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog"></i> Configurações
+                    </a>
                 </li>
             </ul>
         </nav>
         
-        <main id="main-content-area"></main>
+        <!-- Main Content -->
+        <main class="app-main" id="main-content">
+            <!-- Dashboard será carregado aqui inicialmente -->
+        </main>
     </div>
 
-    <!-- MODAL CADASTRO USUÁRIO -->
-    <div id="modal-cadastro-usuario" class="modal-overlay hidden">
-        <div class="modal-content modal-sm">
-            <div class="modal-header">Cadastrar Usuário</div>
+    <!-- Modal Cadastro de Usuário -->
+    <div id="modal-user" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cadastrar Usuário</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
             <div class="modal-body">
-                <div class="input-group">
-                    <div>
-                        <label for="userName">Nome do Usuário*</label>
-                        <input type="text" id="userName">
-                    </div>
-                    <div>
-                        <label for="userCpf">CPF*</label>
-                        <input type="text" id="userCpf">
-                    </div>
-                    <div>
-                        <label for="userEmail">E-mail*</label>
-                        <input type="email" id="userEmail">
-                    </div>
+                <div class="form-group">
+                    <label class="form-label">Nome Completo*</label>
+                    <input type="text" id="user-name" class="form-control" required>
                 </div>
-                <div class="input-group">
-                    <div>
-                        <label for="userProfile">Perfil*</label>
-                        <select id="userProfile">
-                            <option>Selecione</option>
-                            <option>Administrador</option>
-                            <option>Gestor</option>
-                        </select>
+                <div class="form-group">
+                    <label class="form-label">CPF*</label>
+                    <input type="text" id="user-cpf" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">E-mail*</label>
+                    <input type="email" id="user-email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Perfil*</label>
+                    <select id="user-role" class="form-control" required>
+                        <option value="">Selecione um perfil</option>
+                        <option value="admin">Administrador</option>
+                        <option value="manager">Gestor</option>
+                        <option value="operator">Operador</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Status</label>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <label class="switch">
+                            <input type="checkbox" id="user-status" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <span id="status-text">Ativo</span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-cancel" onclick="closeAllModals()">CANCELAR</button>
-                <button class="btn-save" onclick="saveAndClose()">SALVAR</button>
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveUser()">Salvar</button>
             </div>
         </div>
     </div>
-    
-    <!-- MODAL CADASTRO PERFIL -->
-    <div id="modal-cadastro-perfil" class="modal-overlay hidden">
-        <div class="modal-content modal-lg">
-            <div class="modal-header">Cadastrar Perfil</div>
+
+    <!-- Modal Cadastro de Perfil -->
+    <div id="modal-role" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cadastrar Perfil</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
             <div class="modal-body">
-                <div class="input-group">
-                    <div>
-                        <label for="profileName">Nome</label>
-                        <input type="text" id="profileName" maxlength="40">
-                    </div>
-                    <div>
-                        <label for="profileAdmin">Administrador</label>
-                        <select id="profileAdmin">
-                            <option>Sim</option>
-                            <option>Não</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label class="form-label">Nome do Perfil*</label>
+                    <input type="text" id="role-name" class="form-control" required>
                 </div>
-                <div class="permission-selector">
-                    <div class="permission-box">
-                        <h4>Selecionar Permissões</h4>
-                        <select id="available-permissions" multiple>
-                            <option value="p1">Profissional</option>
-                            <option value="p2">Grupo Interno da SEE</option>
-                            <option value="p3">Relatórios Globais</option>
-                        </select>
+                <div class="form-group">
+                    <label class="form-label">Descrição</label>
+                    <textarea id="role-description" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <h4>Permissões</h4>
+                <div class="permissions-grid">
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm-users" value="users">
+                        <label for="perm-users">Gerenciar Usuários</label>
                     </div>
-                    <div class="permission-buttons">
-                        <button onclick="movePermissions('available-permissions', 'selected-permissions')">&gt;</button>
-                        <button onclick="movePermissions('selected-permissions', 'available-permissions')">&lt;</button>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm-roles" value="roles">
+                        <label for="perm-roles">Gerenciar Perfis</label>
                     </div>
-                    <div class="permission-box">
-                        <h4>Permissões Selecionados</h4>
-                        <select id="selected-permissions" multiple></select>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm-dashboard" value="dashboard" checked>
+                        <label for="perm-dashboard">Visualizar Dashboard</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm-reports" value="reports" checked>
+                        <label for="perm-reports">Visualizar Relatórios</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm-export" value="export">
+                        <label for="perm-export">Exportar Dados</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm-settings" value="settings">
+                        <label for="perm-settings">Configurações</label>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-cancel" onclick="closeAllModals()">CANCELAR</button>
-                <button class="btn-save" onclick="saveAndClose()">SALVAR</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- MODAL CADASTRO PERMISSÃO -->
-    <div id="modal-cadastro-permissao" class="modal-overlay hidden">
-        <div class="modal-content modal-sm">
-            <div class="modal-header">Cadastrar Permissões</div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <div>
-                        <label>Nome</label>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <div>
-                        <label>Descrição</label>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <label>Posição do Menu</label>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <div>
-                        <label>Permissões*</label>
-                        <select>
-                            <option>Selecione</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-cancel" onclick="closeAllModals()">CANCELAR</button>
-                <button class="btn-save" onclick="saveAndClose()">SALVAR</button>
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveRole()">Salvar</button>
             </div>
         </div>
     </div>
 
     <script>
-        // --- CONTROLE DE NAVEGAÇÃO E ESTADO ---
-        const loginPage = document.getElementById('login-page');
-        const adminPanel = document.getElementById('admin-panel');
-        const mainContentArea = document.getElementById('main-content-area');
+        // Dados de exemplo para o dashboard
+        const dashboardData = {
+            totalIndividuos: 4876,
+            localizados: 3123,
+            naoLocalizados: 1753,
+            situacaoRua: 28, // %
+            evolucaoMensal: [800, 950, 1100, 1050, 1200, 1300, 1250],
+            distribuicaoMunicipios: {
+                labels: ['Recife', 'Olinda', 'Jaboatão', 'Caruaru', 'Petrolina'],
+                data: [1200, 800, 600, 400, 300]
+            },
+            situacaoIndividuos: {
+                labels: ['Localizados', 'Não Localizados', 'Situação de Rua'],
+                data: [65, 20, 15]
+            },
+            faixaEtaria: {
+                labels: ['0-18 anos', '19-30 anos', '31-45 anos', '46-60 anos', '60+ anos'],
+                data: [400, 600, 800, 500, 300]
+            }
+        };
 
-        const userCredentials = { username: 'admin', password: 'password123' };
+        // Dados de exemplo para o relatório
+        const reportData = [
+            { municipio: "Recife", total: 1234, localizados: 890, naoLocalizados: 344, situacaoRua: "32%" },
+            { municipio: "Olinda", total: 876, localizados: 654, naoLocalizados: 222, situacaoRua: "25%" },
+            { municipio: "Jaboatão", total: 765, localizados: 543, naoLocalizados: 222, situacaoRua: "29%" },
+            { municipio: "Caruaru", total: 543, localizados: 432, naoLocalizados: 111, situacaoRua: "22%" },
+            { municipio: "Petrolina", total: 432, localizados: 321, naoLocalizados: 111, situacaoRua: "18%" }
+        ];
 
-        // Lista de municípios de PE (exemplo)
+        // Dados de exemplo para usuários e perfis
+        let users = [
+            { id: 1, name: "Admin", email: "admin@pesemfome.pe.gov.br", cpf: "123.456.789-00", role: "admin", status: true },
+            { id: 2, name: "Gestor Municipal", email: "gestor@pesemfome.pe.gov.br", cpf: "987.654.321-00", role: "manager", status: true },
+            { id: 3, name: "Operador CRAS", email: "operador@pesemfome.pe.gov.br", cpf: "456.789.123-00", role: "operator", status: false }
+        ];
+
+        let roles = [
+            { id: "admin", name: "Administrador", description: "Acesso completo ao sistema", permissions: ["users", "roles", "dashboard", "reports", "export", "settings"] },
+            { id: "manager", name: "Gestor", description: "Acesso a relatórios e gestão básica", permissions: ["dashboard", "reports", "export"] },
+            { id: "operator", name: "Operador", description: "Acesso apenas para registro de dados", permissions: ["dashboard"] }
+        ];
+
+        // Municípios de Pernambuco
         const municipiosPE = [
             "Todos os municípios",
             "Recife",
@@ -717,187 +868,394 @@
             "Bodocó"
         ];
 
-        // Fechar dropdowns quando clicar fora
-        document.addEventListener('click', function(event) {
-            if (!event.target.matches('.main-nav > ul > li > a')) {
-                document.querySelectorAll('.dropdown').forEach(dropdown => {
-                    dropdown.style.display = 'none';
-                });
-            }
-        });
+        // Estado da aplicação
+        let currentUser = null;
+        let currentPage = 'dashboard';
+        let editingUserId = null;
+        let editingRoleId = null;
 
-function handleForgotPassword(event) {
-    event.preventDefault(); // Impede o link de navegar
-    alert('Em uma aplicação real, isso iniciaria o fluxo de recuperação de senha.');
-}
-
-        function toggleDropdown(element) {
-            event.preventDefault();
-            const dropdown = element.nextElementSibling;
-            const allDropdowns = document.querySelectorAll('.dropdown');
-            
-            // Fecha todos os outros dropdowns
-            allDropdowns.forEach(item => {
-                if (item !== dropdown) {
-                    item.style.display = 'none';
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Evento de login
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Simulação de login
+                if (username === 'admin' && password === 'admin123') {
+                    currentUser = {
+                        id: 1,
+                        name: "Administrador",
+                        role: "admin"
+                    };
+                    
+                    document.getElementById('loginError').style.display = 'none';
+                    document.getElementById('login-page').classList.add('hidden');
+                    document.getElementById('admin-panel').classList.remove('hidden');
+                    document.getElementById('current-user').textContent = currentUser.name;
+                    showPage('dashboard');
+                } else {
+                    document.getElementById('loginError').style.display = 'block';
                 }
             });
-            
-            // Alterna o dropdown atual
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            } else {
-                dropdown.style.display = 'block';
-            }
-        }
 
-        function handleLogin(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            if (username === userCredentials.username && password === userCredentials.password) {
-                loginPage.classList.add('hidden');
-                adminPanel.classList.remove('hidden');
-                showPage('page-relatorio'); 
-            } else {
-                document.getElementById('loginError').classList.remove('hidden');
-            }
-        }
-
-        function handleLogout() {
-            adminPanel.classList.add('hidden');
-            loginPage.classList.remove('hidden');
-            document.getElementById('loginForm').reset();
-        }
-
-        function showPage(pageName) {
-            let content = '';
-            closeAllModals(); 
-            closeAllDropdowns();
-            
-            switch(pageName) {
-                case 'page-usuarios': 
-                    content = getContentUsuarios(); 
-                    break;
-                case 'page-perfis': 
-                    content = getContentPerfis(); 
-                    break;
-                case 'page-permissoes': 
-                    content = getContentPermissoes(); 
-                    break;
-                case 'page-relatorio': 
-                    content = getContentRelatorio(); 
-                    break;
-            }
-            mainContentArea.innerHTML = content;
-            
-            // Inicializa os gráficos se for a página de relatório
-            if (pageName === 'page-relatorio') {
-                setTimeout(initCharts, 100); // Pequeno delay para garantir que o DOM esteja pronto
-            }
-        }
-
-        function closeAllDropdowns() {
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-                dropdown.style.display = 'none';
+            // Evento para status do usuário
+            document.getElementById('user-status')?.addEventListener('change', function() {
+                document.getElementById('status-text').textContent = this.checked ? 'Ativo' : 'Inativo';
             });
+        });
+
+        // Funções de navegação
+        function showPage(page) {
+            currentPage = page;
+            updateNavMenu();
+            renderContent();
         }
 
-        function openModal(modalId) { 
-            document.getElementById(modalId).classList.remove('hidden'); 
+        function toggleSubmenu(element) {
+            const submenu = element.nextElementSibling;
+            if (submenu.style.display === 'block') {
+                submenu.style.display = 'none';
+            } else {
+                submenu.style.display = 'block';
+            }
         }
-        
-        function closeAllModals() { 
-            document.querySelectorAll('.modal-overlay').forEach(modal => modal.classList.add('hidden')); 
-        }
-        
-        function saveAndClose() { 
-            alert('Dados salvos (simulação)!'); 
-            closeAllModals(); 
-        }
-        
-        function movePermissions(sourceId, destId) {
-            const sourceList = document.getElementById(sourceId);
-            const destList = document.getElementById(destId);
-            Array.from(sourceList.selectedOptions).forEach(option => {
-                destList.appendChild(option);
+
+        function updateNavMenu() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
             });
-        }
-        
-        function toggleAtivo(element) {
-            const isAtivo = element.checked;
-            alert(`Status alterado para: ${isAtivo ? 'Ativo' : 'Inativo'}`);
-            // Aqui seria feita a chamada para atualizar o status no backend
-        }
-        
-        function aplicarFiltros() {
-            alert('Filtros aplicados (simulação)!');
-            // Aqui seria feita a chamada para filtrar os dados
-        }
-        
-        function exportarPDF() {
-            alert('Exportando para PDF...');
-            // Aqui seria implementada a lógica de exportação para PDF
-            // Poderia usar bibliotecas como jsPDF ou html2pdf.js
-        }
-        
-        function exportarCSV() {
-            alert('Exportando para CSV...');
-            // Aqui seria implementada a lógica de exportação para CSV
-            // Exemplo simples:
-            const csvContent = "Município,Total,Localizados,Não Localizados,% Situação de Rua\n" +
-                               "Recife,1234,890,344,32%\n" +
-                               "Olinda,876,654,222,25%\n" +
-                               "Jaboatão,765,543,222,29%\n" +
-                               "Caruaru,543,432,111,22%\n" +
-                               "Petrolina,432,321,111,18%";
             
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            
-            link.setAttribute('href', url);
-            link.setAttribute('download', 'relatorio_individuos_municipio.csv');
-            link.style.visibility = 'hidden';
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const activeLink = document.querySelector(`.nav-link[onclick="showPage('${currentPage}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
         }
 
+        function renderContent() {
+            const contentElement = document.getElementById('main-content');
+            
+            switch(currentPage) {
+                case 'dashboard':
+                    renderDashboard(contentElement);
+                    break;
+                case 'users':
+                    renderUsers(contentElement);
+                    break;
+                case 'roles':
+                    renderRoles(contentElement);
+                    break;
+                case 'report-municipality':
+                    renderReportMunicipality(contentElement);
+                    break;
+                default:
+                    renderDashboard(contentElement);
+            }
+        }
+
+        // Renderização do Dashboard
+        function renderDashboard(container) {
+            container.innerHTML = `
+                <div class="content-header">
+                    <h1 class="page-title"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+                    <div class="btn-group">
+                        <button class="btn btn-outline">
+                            <i class="fas fa-sync-alt"></i> Atualizar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="kpi-container">
+                    <div class="kpi-card" style="border-top: 4px solid var(--primary-color);">
+                        <div class="kpi-icon" style="color: var(--primary-color);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="kpi-value">${dashboardData.totalIndividuos.toLocaleString()}</div>
+                        <div class="kpi-label">Total de Indivíduos</div>
+                    </div>
+                    
+                    <div class="kpi-card" style="border-top: 4px solid var(--secondary-color);">
+                        <div class="kpi-icon" style="color: var(--secondary-color);">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="kpi-value">${dashboardData.localizados.toLocaleString()}</div>
+                        <div class="kpi-label">Localizados no CadÚnico</div>
+                    </div>
+                    
+                    <div class="kpi-card" style="border-top: 4px solid var(--warning-color);">
+                        <div class="kpi-icon" style="color: var(--warning-color);">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="kpi-value">${dashboardData.naoLocalizados.toLocaleString()}</div>
+                        <div class="kpi-label">Não Localizados</div>
+                    </div>
+                    
+                    <div class="kpi-card" style="border-top: 4px solid var(--danger-color);">
+                        <div class="kpi-icon" style="color: var(--danger-color);">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="kpi-value">${dashboardData.situacaoRua}%</div>
+                        <div class="kpi-label">em Situação de Rua</div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-box">
+                        <h3 class="chart-title">Distribuição por Município</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="distribuicaoChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-box">
+                        <h3 class="chart-title">Situação dos Indivíduos</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="situacaoChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-box">
+                        <h3 class="chart-title">Evolução Mensal</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="evolucaoChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-box">
+                        <h3 class="chart-title">Faixa Etária</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="faixaEtariaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-footer">
+                    Sistema PE sem Fome &copy; ${new Date().getFullYear()} - Todos os direitos reservados
+                </div>
+            `;
+            
+            // Inicializar gráficos
+            setTimeout(initCharts, 100);
+        }
+
+        // Renderização da página de usuários
+        function renderUsers(container) {
+            container.innerHTML = `
+                <div class="content-header">
+                    <h1 class="page-title"><i class="fas fa-users"></i> Gerenciar Usuários</h1>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="openUserModal()">
+                            <i class="fas fa-plus"></i> Novo Usuário
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>CPF</th>
+                                    <th>Perfil</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${users.map(user => `
+                                    <tr>
+                                        <td>${user.name}</td>
+                                        <td>${user.email}</td>
+                                        <td>${user.cpf}</td>
+                                        <td>
+                                            <span class="badge">
+                                                ${roles.find(r => r.id === user.role)?.name || user.role}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" ${user.status ? 'checked' : ''} 
+                                                    onchange="toggleUserStatus(${user.id}, this)">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </td>
+                                        <td class="actions">
+                                            <button class="btn btn-sm" onclick="editUser(${user.id})">
+                                                <i class="fas fa-edit"></i> Editar
+                                            </button>
+                                            <button class="btn btn-sm" onclick="deleteUser(${user.id})">
+                                                <i class="fas fa-trash"></i> Excluir
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="app-footer">
+                    Total de usuários: ${users.length}
+                </div>
+            `;
+        }
+
+        // Renderização da página de perfis
+        function renderRoles(container) {
+            container.innerHTML = `
+                <div class="content-header">
+                    <h1 class="page-title"><i class="fas fa-user-shield"></i> Gerenciar Perfis</h1>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="openRoleModal()">
+                            <i class="fas fa-plus"></i> Novo Perfil
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>Permissões</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${roles.map(role => `
+                                    <tr>
+                                        <td>${role.name}</td>
+                                        <td>${role.description}</td>
+                                        <td>
+                                            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                                ${role.permissions.map(perm => `
+                                                    <span class="badge">${perm}</span>
+                                                `).join('')}
+                                            </div>
+                                        </td>
+                                        <td class="actions">
+                                            <button class="btn btn-sm" onclick="editRole('${role.id}')">
+                                                <i class="fas fa-edit"></i> Editar
+                                            </button>
+                                            ${role.id !== 'admin' ? `
+                                                <button class="btn btn-sm" onclick="deleteRole('${role.id}')">
+                                                    <i class="fas fa-trash"></i> Excluir
+                                                </button>
+                                            ` : ''}
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="app-footer">
+                    Total de perfis: ${roles.length}
+                </div>
+            `;
+        }
+
+        // Renderização do Relatório por Município
+        function renderReportMunicipality(container) {
+            container.innerHTML = `
+                <div class="content-header">
+                    <h1 class="page-title"><i class="fas fa-map-marker-alt"></i> Relatório de Indivíduo por Município</h1>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="exportPDF()">
+                            <i class="fas fa-file-pdf"></i> Exportar PDF
+                        </button>
+                        <button class="btn btn-secondary" onclick="exportCSV()">
+                            <i class="fas fa-file-csv"></i> Exportar CSV
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filter-box">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label class="form-label">Município</label>
+                            <select id="municipio" class="form-control">
+                                ${municipiosPE.map(m => `<option value="${m}">${m}</option>`).join('')}
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="form-label">Data Início</label>
+                            <input type="date" id="data-inicio" class="form-control" value="2023-01-01">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="form-label">Data Fim</label>
+                            <input type="date" id="data-fim" class="form-control" value="2023-12-31">
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="applyFilters()">
+                            <i class="fas fa-filter"></i> Filtrar
+                        </button>
+                        <button class="btn btn-outline" onclick="resetFilters()">
+                            <i class="fas fa-undo"></i> Limpar Filtros
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Município</th>
+                                    <th>Total</th>
+                                    <th>Localizados</th>
+                                    <th>Não Localizados</th>
+                                    <th>% Situação de Rua</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${reportData.map(item => `
+                                    <tr>
+                                        <td>${item.municipio}</td>
+                                        <td>${item.total.toLocaleString()}</td>
+                                        <td>${item.localizados.toLocaleString()}</td>
+                                        <td>${item.naoLocalizados.toLocaleString()}</td>
+                                        <td>${item.situacaoRua}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="app-footer">
+                    Sistema PE sem Fome &copy; ${new Date().getFullYear()} - Relatório gerado em: ${new Date().toLocaleDateString()}
+                </div>
+            `;
+        }
+
+        // Funções para gráficos
         function initCharts() {
-            // Dados mockados para os gráficos
-            const municipios = ['Recife', 'Olinda', 'Jaboatão', 'Caruaru', 'Petrolina'];
-            const distribuicaoData = [1200, 800, 600, 400, 300];
-            const situacaoData = [65, 20, 15]; // % Localizados, Não localizados, Situação de rua
-            const evolucaoMensalData = [800, 950, 1100, 1050, 1200, 1300, 1250];
-            const faixaEtariaData = [400, 600, 800, 500, 300]; // 0-18, 19-30, 31-45, 46-60, 60+
-            
             // Gráfico de Barras - Distribuição por Município
             new Chart(
                 document.getElementById('distribuicaoChart'),
                 {
                     type: 'bar',
                     data: {
-                        labels: municipios,
+                        labels: dashboardData.distribuicaoMunicipios.labels,
                         datasets: [{
                             label: 'Indivíduos',
-                            data: distribuicaoData,
-                            backgroundColor: [
-                                'rgba(63, 81, 181, 0.7)',
-                                'rgba(63, 81, 181, 0.7)',
-                                'rgba(63, 81, 181, 0.7)',
-                                'rgba(63, 81, 181, 0.7)',
-                                'rgba(63, 81, 181, 0.7)'
-                            ],
-                            borderColor: [
-                                'rgba(63, 81, 181, 1)',
-                                'rgba(63, 81, 181, 1)',
-                                'rgba(63, 81, 181, 1)',
-                                'rgba(63, 81, 181, 1)',
-                                'rgba(63, 81, 181, 1)'
-                            ],
+                            data: dashboardData.distribuicaoMunicipios.data,
+                            backgroundColor: 'rgba(63, 81, 181, 0.7)',
+                            borderColor: 'rgba(63, 81, 181, 1)',
                             borderWidth: 1
                         }]
                     },
@@ -911,12 +1269,6 @@ function handleForgotPassword(event) {
                                     display: true,
                                     text: 'Quantidade de Indivíduos'
                                 }
-                            },
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'Municípios'
-                                }
                             }
                         }
                     }
@@ -929,9 +1281,9 @@ function handleForgotPassword(event) {
                 {
                     type: 'pie',
                     data: {
-                        labels: ['Localizados', 'Não Localizados', 'Situação de Rua'],
+                        labels: dashboardData.situacaoIndividuos.labels,
                         datasets: [{
-                            data: situacaoData,
+                            data: dashboardData.situacaoIndividuos.data,
                             backgroundColor: [
                                 'rgba(76, 175, 80, 0.7)',
                                 'rgba(255, 193, 7, 0.7)',
@@ -951,13 +1303,6 @@ function handleForgotPassword(event) {
                         plugins: {
                             legend: {
                                 position: 'bottom',
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return `${context.label}: ${context.raw}%`;
-                                    }
-                                }
                             }
                         }
                     }
@@ -973,7 +1318,7 @@ function handleForgotPassword(event) {
                         labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'],
                         datasets: [{
                             label: 'Indivíduos Cadastrados',
-                            data: evolucaoMensalData,
+                            data: dashboardData.evolucaoMensal,
                             fill: false,
                             backgroundColor: 'rgba(63, 81, 181, 0.7)',
                             borderColor: 'rgba(63, 81, 181, 1)',
@@ -986,17 +1331,7 @@ function handleForgotPassword(event) {
                         maintainAspectRatio: false,
                         scales: {
                             y: {
-                                beginAtZero: false,
-                                title: {
-                                    display: true,
-                                    text: 'Quantidade'
-                                }
-                            },
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'Meses'
-                                }
+                                beginAtZero: false
                             }
                         }
                     }
@@ -1009,24 +1344,12 @@ function handleForgotPassword(event) {
                 {
                     type: 'bar',
                     data: {
-                        labels: ['0-18 anos', '19-30 anos', '31-45 anos', '46-60 anos', '60+ anos'],
+                        labels: dashboardData.faixaEtaria.labels,
                         datasets: [{
                             label: 'Indivíduos',
-                            data: faixaEtariaData,
-                            backgroundColor: [
-                                'rgba(255, 152, 0, 0.7)',
-                                'rgba(255, 152, 0, 0.7)',
-                                'rgba(255, 152, 0, 0.7)',
-                                'rgba(255, 152, 0, 0.7)',
-                                'rgba(255, 152, 0, 0.7)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 152, 0, 1)',
-                                'rgba(255, 152, 0, 1)',
-                                'rgba(255, 152, 0, 1)',
-                                'rgba(255, 152, 0, 1)',
-                                'rgba(255, 152, 0, 1)'
-                            ],
+                            data: dashboardData.faixaEtaria.data,
+                            backgroundColor: 'rgba(255, 152, 0, 0.7)',
+                            borderColor: 'rgba(255, 152, 0, 1)',
                             borderWidth: 1
                         }]
                     },
@@ -1035,17 +1358,7 @@ function handleForgotPassword(event) {
                         maintainAspectRatio: false,
                         scales: {
                             y: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: 'Quantidade'
-                                }
-                            },
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'Faixa Etária'
-                                }
+                                beginAtZero: true
                             }
                         }
                     }
@@ -1053,362 +1366,225 @@ function handleForgotPassword(event) {
             );
         }
 
-        // --- GERADORES DE CONTEÚDO HTML (Simulação de Páginas) ---
-        function getContentUsuarios() {
-            return `
-                <div class="main-content">
-                    <div class="breadcrumbs">Início / Cadastro / Gerenciar Usuários</div>
-                    <div class="content-box">
-                        <div class="filter-box">
-                            <input type="text" placeholder="Nome de Usuário">
-                            <input type="text" placeholder="CPF">
-                            <select><option>Perfil</option></select>
-                            <select><option>Ativo</option></select>
-                            <button class="action-button" title="Pesquisar">🔍</button>
-                            <button class="action-button" title="Adicionar" onclick="openModal('modal-cadastro-usuario')">+</button>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Nome de Usuário</th>
-                                    <th>CPF</th>
-                                    <th>Perfil</th>
-                                    <th>Ativo</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Admin</td>
-                                    <td>123.456.789-00</td>
-                                    <td>Administrador</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" checked onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Gestor1</td>
-                                    <td>987.654.321-00</td>
-                                    <td>Gestor</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" checked onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Analista</td>
-                                    <td>456.789.123-00</td>
-                                    <td>Analista</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>`;
+        // Funções para relatório
+        function applyFilters() {
+            const municipio = document.getElementById('municipio').value;
+            const dataInicio = document.getElementById('data-inicio').value;
+            const dataFim = document.getElementById('data-fim').value;
+            
+            alert(`Filtros aplicados:\nMunicípio: ${municipio}\nData Início: ${dataInicio}\nData Fim: ${dataFim}`);
+            // Aqui viria a lógica para filtrar os dados
         }
-        
-        function getContentPerfis() {
-            return `
-                <div class="main-content">
-                    <div class="breadcrumbs">Início / Cadastro / Gerenciar Perfis</div>
-                    <div class="content-box">
-                        <div class="filter-box">
-                            <input type="text" placeholder="Perfil">
-                            <select><option>Ativo</option></select>
-                            <button class="action-button" title="Pesquisar">🔍</button>
-                            <button class="action-button" title="Adicionar" onclick="openModal('modal-cadastro-perfil')">+</button>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Grupos</th>
-                                    <th>Ativo</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Administrador</td>
-                                    <td>Todos</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" checked onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Gestor</td>
-                                    <td>Relatórios, Cadastros</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" checked onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Analista</td>
-                                    <td>Relatórios</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>`;
+
+        function resetFilters() {
+            document.getElementById('municipio').value = "Todos os municípios";
+            document.getElementById('data-inicio').value = "2023-01-01";
+            document.getElementById('data-fim').value = "2023-12-31";
+            alert('Filtros resetados!');
         }
-        
-        function getContentPermissoes() {
-            return `
-                <div class="main-content">
-                    <div class="breadcrumbs">Início / Cadastro / Gerenciar Permissões</div>
-                    <div class="content-box">
-                        <div class="filter-box">
-                            <input type="text" placeholder="Permissão">
-                            <select><option>Ativo</option></select>
-                            <button class="action-button" title="Pesquisar">🔍</button>
-                            <button class="action-button" title="Adicionar" onclick="openModal('modal-cadastro-permissao')">+</button>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Descrição</th>
-                                    <th>Ativo</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Acessar Relatórios</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" checked onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Gerenciar Usuários</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" checked onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Editar Cadastros</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Visualizar Dashboard</td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" checked onchange="toggleAtivo(this)">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>
-                                    <td class="table-actions">
-                                        <span class="edit-btn" title="Editar">✏️</span>
-                                        <span class="delete-btn" title="Excluir">🗑️</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>`;
+
+        function exportPDF() {
+            alert('Exportando relatório para PDF...');
+            // Lógica para exportar PDF
         }
-        
-        function getContentRelatorio() {
-            return `
-                <div class="main-content">
-                    <div class="report-header">
-                        <h1>Relatório de Indivíduo por Município</h1>
-                        <div class="export-buttons">
-                            <button class="export-btn" onclick="exportarPDF()"><i>📄</i> Exportar PDF</button>
-                            <button class="export-btn" onclick="exportarCSV()"><i>📊</i> Exportar CSV</button>
-                        </div>
-                    </div>
+
+        function exportCSV() {
+            alert('Exportando relatório para CSV...');
+            // Lógica para exportar CSV
+        }
+
+        // Funções para usuários
+        function openUserModal(userId = null) {
+            const modal = document.getElementById('modal-user');
+            editingUserId = userId;
+            
+            if (userId) {
+                const user = users.find(u => u.id === userId);
+                if (user) {
+                    document.querySelector('.modal-title').textContent = 'Editar Usuário';
+                    document.getElementById('user-name').value = user.name;
+                    document.getElementById('user-cpf').value = user.cpf;
+                    document.getElementById('user-email').value = user.email;
+                    document.getElementById('user-role').value = user.role;
+                    document.getElementById('user-status').checked = user.status;
+                    document.getElementById('status-text').textContent = user.status ? 'Ativo' : 'Inativo';
+                }
+            } else {
+                document.querySelector('.modal-title').textContent = 'Cadastrar Usuário';
+                document.getElementById('user-name').value = '';
+                document.getElementById('user-cpf').value = '';
+                document.getElementById('user-email').value = '';
+                document.getElementById('user-role').value = '';
+                document.getElementById('user-status').checked = true;
+                document.getElementById('status-text').textContent = 'Ativo';
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function saveUser() {
+            const name = document.getElementById('user-name').value;
+            const cpf = document.getElementById('user-cpf').value;
+            const email = document.getElementById('user-email').value;
+            const role = document.getElementById('user-role').value;
+            const status = document.getElementById('user-status').checked;
+            
+            if (!name || !cpf || !email || !role) {
+                alert('Preencha todos os campos obrigatórios!');
+                return;
+            }
+            
+            if (editingUserId) {
+                // Editar usuário existente
+                const index = users.findIndex(u => u.id === editingUserId);
+                if (index !== -1) {
+                    users[index] = {
+                        ...users[index],
+                        name,
+                        cpf,
+                        email,
+                        role,
+                        status
+                    };
+                }
+            } else {
+                // Criar novo usuário
+                const newId = Math.max(...users.map(u => u.id), 0) + 1;
+                users.push({
+                    id: newId,
+                    name,
+                    cpf,
+                    email,
+                    role,
+                    status
+                });
+            }
+            
+            closeModal();
+            renderUsers(document.getElementById('main-content'));
+            alert('Usuário salvo com sucesso!');
+        }
+
+        function editUser(userId) {
+            openUserModal(userId);
+        }
+
+        function deleteUser(userId) {
+            if (confirm('Tem certeza que deseja excluir este usuário?')) {
+                users = users.filter(u => u.id !== userId);
+                renderUsers(document.getElementById('main-content'));
+                alert('Usuário excluído com sucesso!');
+            }
+        }
+
+        function toggleUserStatus(userId, checkbox) {
+            const status = checkbox.checked;
+            const user = users.find(u => u.id === userId);
+            if (user) {
+                user.status = status;
+            }
+        }
+
+        // Funções para perfis
+        function openRoleModal(roleId = null) {
+            const modal = document.getElementById('modal-role');
+            editingRoleId = roleId;
+            
+            if (roleId) {
+                const role = roles.find(r => r.id === roleId);
+                if (role) {
+                    document.querySelector('.modal-title').textContent = 'Editar Perfil';
+                    document.getElementById('role-name').value = role.name;
+                    document.getElementById('role-description').value = role.description;
                     
-                    <div class="advanced-filters">
-                        <h3>Filtros</h3>
-                        <div class="filter-row">
-                            <div class="filter-group">
-                                <label for="municipio">Município</label>
-                                <select id="municipio">
-                                    ${municipiosPE.map(m => `<option value="${m}">${m}</option>`).join('')}
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label for="data-inicio">Data de Início</label>
-                                <input type="date" id="data-inicio" value="2023-01-01">
-                            </div>
-                            <div class="filter-group">
-                                <label for="data-fim">Data de Fim</label>
-                                <input type="date" id="data-fim" value="2023-07-31">
-                            </div>
-                        </div>
-                        <button class="filter-button" onclick="aplicarFiltros()">FILTRAR</button>
-                    </div>
-                    
-                    <div class="kpi-container">
-                        <div class="kpi-card">
-                            <div class="value">4.876</div>
-                            <div class="label">Total de Consultas</div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="value">3.123</div>
-                            <div class="label">Localizados no CadÚnico</div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="value">1.753</div>
-                            <div class="label">Não Localizados</div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="value">28%</div>
-                            <div class="label">% em Situação de Rua</div>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <div class="chart-box">
-                            <h3 class="chart-title">Distribuição por Município</h3>
-                            <div class="chart-wrapper">
-                                <canvas id="distribuicaoChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="chart-box">
-                            <h3 class="chart-title">Situação dos Indivíduos</h3>
-                            <div class="chart-wrapper">
-                                <canvas id="situacaoChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <div class="chart-box">
-                            <h3 class="chart-title">Evolução Mensal</h3>
-                            <div class="chart-wrapper">
-                                <canvas id="evolucaoChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="chart-box">
-                            <h3 class="chart-title">Faixa Etária</h3>
-                            <div class="chart-wrapper">
-                                <canvas id="faixaEtariaChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="content-box">
-                        <h3>Dados Detalhados</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Município</th>
-                                    <th>Total</th>
-                                    <th>Localizados</th>
-                                    <th>Não Localizados</th>
-                                    <th>% Situação de Rua</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Recife</td>
-                                    <td>1.234</td>
-                                    <td>890</td>
-                                    <td>344</td>
-                                    <td>32%</td>
-                                </tr>
-                                <tr>
-                                    <td>Olinda</td>
-                                    <td>876</td>
-                                    <td>654</td>
-                                    <td>222</td>
-                                    <td>25%</td>
-                                </tr>
-                                <tr>
-                                    <td>Jaboatão</td>
-                                    <td>765</td>
-                                    <td>543</td>
-                                    <td>222</td>
-                                    <td>29%</td>
-                                </tr>
-                                <tr>
-                                    <td>Caruaru</td>
-                                    <td>543</td>
-                                    <td>432</td>
-                                    <td>111</td>
-                                    <td>22%</td>
-                                </tr>
-                                <tr>
-                                    <td>Petrolina</td>
-                                    <td>432</td>
-                                    <td>321</td>
-                                    <td>111</td>
-                                    <td>18%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>`;
+                    // Marcar as permissões
+                    role.permissions.forEach(perm => {
+                        const checkbox = document.getElementById(`perm-${perm}`);
+                        if (checkbox) checkbox.checked = true;
+                    });
+                }
+            } else {
+                document.querySelector('.modal-title').textContent = 'Cadastrar Perfil';
+                document.getElementById('role-name').value = '';
+                document.getElementById('role-description').value = '';
+                
+                // Desmarcar todas as permissões
+                document.querySelectorAll('#modal-role input[type="checkbox"]').forEach(cb => {
+                    cb.checked = false;
+                });
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function saveRole() {
+            const name = document.getElementById('role-name').value;
+            const description = document.getElementById('role-description').value;
+            
+            if (!name) {
+                alert('Preencha o nome do perfil!');
+                return;
+            }
+            
+            // Obter permissões selecionadas
+            const permissions = [];
+            document.querySelectorAll('#modal-role input[type="checkbox"]:checked').forEach(cb => {
+                permissions.push(cb.value);
+            });
+            
+            if (editingRoleId) {
+                // Editar perfil existente
+                const index = roles.findIndex(r => r.id === editingRoleId);
+                if (index !== -1) {
+                    roles[index] = {
+                        ...roles[index],
+                        name,
+                        description,
+                        permissions
+                    };
+                }
+            } else {
+                // Criar novo perfil
+                const newId = name.toLowerCase().replace(/\s+/g, '-');
+                roles.push({
+                    id: newId,
+                    name,
+                    description,
+                    permissions
+                });
+            }
+            
+            closeModal();
+            renderRoles(document.getElementById('main-content'));
+            alert('Perfil salvo com sucesso!');
+        }
+
+        function editRole(roleId) {
+            openRoleModal(roleId);
+        }
+
+        function deleteRole(roleId) {
+            if (confirm('Tem certeza que deseja excluir este perfil?')) {
+                roles = roles.filter(r => r.id !== roleId);
+                renderRoles(document.getElementById('main-content'));
+                alert('Perfil excluído com sucesso!');
+            }
+        }
+
+        // Funções utilitárias
+        function closeModal() {
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.classList.add('hidden');
+            });
+            editingUserId = null;
+            editingRoleId = null;
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            document.getElementById('admin-panel').classList.add('hidden');
+            document.getElementById('login-page').classList.remove('hidden');
+            document.getElementById('loginForm').reset();
         }
     </script>
 </body>
