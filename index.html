@@ -829,9 +829,9 @@
         ];
 
         let roles = [
-            { id: "admin", name: "Administrador", description: "Acesso completo ao sistema", permissions: ["users", "roles", "dashboard", "reports", "export", "settings"] },
-            { id: "manager", name: "Gestor", description: "Acesso a relatórios e gestão básica", permissions: ["dashboard", "reports", "export"] },
-            { id: "operator", name: "Analista", description: "Acesso apenas para registro de dados", permissions: ["dashboard"] }
+            { id: "admin", name: "Administrador", description: "Acesso completo ao sistema", permissions: ["Usuários", "Papéis", "Dashboard", "Relatórios", "Exportar", "Configurações"] },
+            { id: "manager", name: "Gestor", description: "Acesso a relatórios e gestão básica", permissions: ["Dashboard", "Relatórios", "Exportar"] },
+            { id: "operator", name: "Analista", description: "Acesso apenas para registro de dados", permissions: ["Dashboard"] }
         ];
 
         // Municípios de Pernambuco
@@ -1378,8 +1378,8 @@
 
         function resetFilters() {
             document.getElementById('municipio').value = "Todos os municípios";
-            document.getElementById('data-inicio').value = "2023-01-01";
-            document.getElementById('data-fim').value = "2023-12-31";
+            document.getElementById('data-inicio').value = "2025-01-01";
+            document.getElementById('data-fim').value = "2025-12-31";
             alert('Filtros resetados!');
         }
 
