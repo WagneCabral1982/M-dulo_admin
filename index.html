@@ -717,7 +717,7 @@
                         <option value="">Selecione um perfil</option>
                         <option value="admin">Administrador</option>
                         <option value="manager">Gestor</option>
-                        <option value="operator">Operador</option>
+                        <option value="Analyst">Analista</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -824,14 +824,14 @@
         // Dados de exemplo para usuários e perfis
         let users = [
             { id: 1, name: "Admin", email: "admin@pesemfome.pe.gov.br", cpf: "123.456.789-00", role: "admin", status: true },
-            { id: 2, name: "Gestor Municipal", email: "gestor@pesemfome.pe.gov.br", cpf: "987.654.321-00", role: "manager", status: true },
-            { id: 3, name: "Operador CRAS", email: "operador@pesemfome.pe.gov.br", cpf: "456.789.123-00", role: "operator", status: false }
+            { id: 2, name: "Gestor", email: "gestor@pesemfome.pe.gov.br", cpf: "987.654.321-00", role: "manager", status: true },
+            { id: 3, name: "Analista", email: "analista@pesemfome.pe.gov.br", cpf: "456.789.123-00", role: "analys", status: false }
         ];
 
         let roles = [
             { id: "admin", name: "Administrador", description: "Acesso completo ao sistema", permissions: ["users", "roles", "dashboard", "reports", "export", "settings"] },
             { id: "manager", name: "Gestor", description: "Acesso a relatórios e gestão básica", permissions: ["dashboard", "reports", "export"] },
-            { id: "operator", name: "Operador", description: "Acesso apenas para registro de dados", permissions: ["dashboard"] }
+            { id: "operator", name: "Analyst", description: "Acesso apenas para registro de dados", permissions: ["dashboard"] }
         ];
 
         // Municípios de Pernambuco
