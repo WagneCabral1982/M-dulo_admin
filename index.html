@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #3F51B5;
+            --primary-color: #1e3a8a;
             --secondary-color: #4CAF50;
             --danger-color: #F44336;
             --warning-color: #FF9800;
@@ -123,12 +123,12 @@
         }
         
         .nav-link:hover {
-            background-color: rgba(63, 81, 181, 0.1);
+            background-color: rgba(30, 58, 138, 0.1);
             color: var(--primary-color);
         }
         
         .nav-link.active {
-            background-color: rgba(63, 81, 181, 0.2);
+            background-color: rgba(30, 58, 138, 0.2);
             color: var(--primary-color);
             border-left: 3px solid var(--primary-color);
             font-weight: 500;
@@ -195,7 +195,7 @@
         }
         
         tr:hover {
-            background-color: rgba(63, 81, 181, 0.03);
+            background-color: rgba(30, 58, 138, 0.03);
         }
         
         /* KPIs */
@@ -213,6 +213,7 @@
             box-shadow: var(--shadow);
             text-align: center;
             transition: transform 0.3s;
+            position: relative;
         }
         
         .kpi-card:hover {
@@ -327,7 +328,7 @@
         }
         
         .btn-primary:hover {
-            background-color: #3345a0;
+            background-color: #172554;
         }
         
         .btn-secondary {
@@ -351,7 +352,7 @@
         }
         
         .btn-outline:hover {
-            background-color: rgba(63, 81, 181, 0.1);
+            background-color: rgba(30, 58, 138, 0.1);
         }
         
         /* Login */
@@ -360,7 +361,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2a3a8a 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #172554 100%);
         }
         
         .login-card {
@@ -578,6 +579,125 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* Estilos específicos do dashboard */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .dashboard-card {
+            background-color: var(--background-white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .dashboard-card-title {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .dashboard-card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .dashboard-card-percentage {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .dashboard-charts-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .dashboard-chart {
+            background-color: var(--background-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dashboard-chart-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+        
+        .dashboard-chart-content {
+            flex: 1;
+            position: relative;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: var(--text-dark);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            display: none;
+        }
+        
+        .dashboard-card:hover .tooltip {
+            display: block;
+        }
+        
+        .mini-chart {
+            height: 60px;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            margin-top: 10px;
+        }
+        
+        .mini-bar {
+            flex: 1;
+            background-color: var(--primary-color);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .heatmap {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            height: 100%;
+            gap: 4px;
+        }
+        
+        .heatmap-cell {
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            color: white;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -791,24 +911,33 @@
     </div>
 
     <script>
-        // Dados de exemplo para o dashboard
+        // Dados mockados para o dashboard
         const dashboardData = {
             totalIndividuos: 4876,
             localizados: 3123,
             naoLocalizados: 1753,
-            situacaoRua: 28, // %
-            evolucaoMensal: [800, 950, 1100, 1050, 1200, 1300, 1250],
-            distribuicaoMunicipios: {
-                labels: ['Recife', 'Olinda', 'Jaboatão', 'Caruaru', 'Petrolina'],
-                data: [1200, 800, 600, 400, 300]
+            situacaoRua: 1367,
+            nomeSocial: 28, // %
+            estrangeiros: 142,
+            municipios: {
+                labels: ['Recife', 'Jaboatão', 'Olinda', 'Caruaru', 'Petrolina'],
+                values: [1200, 980, 750, 520, 380]
             },
-            situacaoIndividuos: {
-                labels: ['Localizados', 'Não Localizados', 'Situação de Rua'],
-                data: [65, 20, 15]
+            genero: {
+                labels: ['Feminino', 'Masculino', 'Não Binário', 'Outro'],
+                values: [2045, 1860, 390, 581]
             },
-            faixaEtaria: {
-                labels: ['0-18 anos', '19-30 anos', '31-45 anos', '46-60 anos', '60+ anos'],
-                data: [400, 600, 800, 500, 300]
+            persona: {
+                labels: ['Eu', 'Profissional', 'Cidadão Apoiador'],
+                values: [2536, 1168, 1172]
+            },
+            evolucao: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                values: [320, 410, 380, 450, 520, 480, 510, 590, 630, 710, 680, 487]
+            },
+            idade: {
+                labels: ['0-18', '19-30', '31-45', '46-60', '60+'],
+                values: [1250, 1560, 980, 760, 326]
             }
         };
 
@@ -825,7 +954,7 @@
         let users = [
             { id: 1, name: "Admin", email: "admin@pesemfome.pe.gov.br", cpf: "123.456.789-00", role: "admin", status: true },
             { id: 2, name: "Gestor", email: "gestor@pesemfome.pe.gov.br", cpf: "987.654.321-00", role: "manager", status: true },
-            { id: 3, name: "Analista", email: "analista@pesemfome.pe.gov.br", cpf: "456.789.123-00", role: "analys", status: false }
+            { id: 3, name: "Analista", email: "analista@pesemfome.pe.gov.br", cpf: "456.789.123-00", role: "analyst", status: false }
         ];
 
         let roles = [
@@ -967,79 +1096,331 @@
                     </div>
                 </div>
                 
-                <div class="kpi-container">
-                    <div class="kpi-card" style="border-top: 4px solid var(--primary-color);">
-                        <div class="kpi-icon" style="color: var(--primary-color);">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="kpi-value">${dashboardData.totalIndividuos.toLocaleString()}</div>
-                        <div class="kpi-label">Total de Indivíduos</div>
+                <div class="dashboard-grid">
+                    <!-- Card 1: Total de Indivíduos -->
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-title">Total de Indivíduos</div>
+                        <div class="dashboard-card-value">${dashboardData.totalIndividuos.toLocaleString()}</div>
                     </div>
                     
-                    <div class="kpi-card" style="border-top: 4px solid var(--secondary-color);">
-                        <div class="kpi-icon" style="color: var(--secondary-color);">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="kpi-value">${dashboardData.localizados.toLocaleString()}</div>
-                        <div class="kpi-label">Localizados no CadÚnico</div>
+                    <!-- Card 2: Localizados no CadÚnico -->
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-title">Localizados no CadÚnico</div>
+                        <div class="dashboard-card-value">${dashboardData.localizados.toLocaleString()}</div>
+                        <div class="tooltip">Não localizados: ${dashboardData.naoLocalizados.toLocaleString()}</div>
                     </div>
                     
-                    <div class="kpi-card" style="border-top: 4px solid var(--warning-color);">
-                        <div class="kpi-icon" style="color: var(--warning-color);">
-                            <i class="fas fa-search"></i>
+                    <!-- Card 3: Perfil do Usuário -->
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-title">Perfil do Usuário</div>
+                        <div class="mini-chart">
+                            <div class="mini-bar" style="height: 80%; background-color: #3b82f6;"></div>
+                            <div class="mini-bar" style="height: 60%; background-color: #60a5fa;"></div>
+                            <div class="mini-bar" style="height: 40%; background-color: #93c5fd;"></div>
                         </div>
-                        <div class="kpi-value">${dashboardData.naoLocalizados.toLocaleString()}</div>
-                        <div class="kpi-label">Não Localizados</div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.75rem;">
+                            <span>Para mim</span>
+                            <span>Outra</span>
+                            <span>Prof.</span>
+                        </div>
                     </div>
                     
-                    <div class="kpi-card" style="border-top: 4px solid var(--danger-color);">
-                        <div class="kpi-icon" style="color: var(--danger-color);">
-                            <i class="fas fa-home"></i>
-                        </div>
-                        <div class="kpi-value">${dashboardData.situacaoRua}%</div>
-                        <div class="kpi-label">em Situação de Rua</div>
+                    <!-- Card 4: Situação de Rua -->
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-title">Em Situação de Rua</div>
+                        <div class="dashboard-card-value">${dashboardData.situacaoRua.toLocaleString()}</div>
+                    </div>
+                    
+                    <!-- Card 5: Nome Social -->
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-title">% Uso de Nome Social</div>
+                        <div class="dashboard-card-value dashboard-card-percentage">${dashboardData.nomeSocial}%</div>
+                    </div>
+                    
+                    <!-- Card 6: Estrangeiros -->
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-title">Estrangeiros</div>
+                        <div class="dashboard-card-value">${dashboardData.estrangeiros.toLocaleString()}</div>
                     </div>
                 </div>
-                
-                <div class="chart-container">
-                    <div class="chart-box">
-                        <h3 class="chart-title">Distribuição por Município</h3>
-                        <div class="chart-wrapper">
-                            <canvas id="distribuicaoChart"></canvas>
+
+                <div class="dashboard-charts-container">
+                    <!-- Top 5 Municípios -->
+                    <div class="dashboard-chart">
+                        <div class="dashboard-chart-title">Top 5 Municípios</div>
+                        <div class="dashboard-chart-content">
+                            <canvas id="municipiosChart"></canvas>
                         </div>
                     </div>
                     
-                    <div class="chart-box">
-                        <h3 class="chart-title">Situação dos Indivíduos</h3>
-                        <div class="chart-wrapper">
-                            <canvas id="situacaoChart"></canvas>
+                    <!-- Mapa de Calor -->
+                    <div class="dashboard-chart">
+                        <div class="dashboard-chart-title">Mapa de Calor Municipal</div>
+                        <div class="heatmap">
+                            <div class="heatmap-cell" style="background-color: #3b82f6;">Recife</div>
+                            <div class="heatmap-cell" style="background-color: #60a5fa;">Jaboatão</div>
+                            <div class="heatmap-cell" style="background-color: #93c5fd;">Olinda</div>
+                            <div class="heatmap-cell" style="background-color: #bfdbfe;">Caruaru</div>
+                            <div class="heatmap-cell" style="background-color: #dbeafe;">Petrolina</div>
+                            
+                            <div class="heatmap-cell" style="background-color: #60a5fa;">Camaragibe</div>
+                            <div class="heatmap-cell" style="background-color: #93c5fd;">Paulista</div>
+                            <div class="heatmap-cell" style="background-color: #bfdbfe;">Cabo</div>
+                            <div class="heatmap-cell" style="background-color: #dbeafe;">Vitória</div>
+                            <div class="heatmap-cell" style="background-color: #eff6ff;">Garanhuns</div>
+                            
+                            <div class="heatmap-cell" style="background-color: #93c5fd;">Igarassu</div>
+                            <div class="heatmap-cell" style="background-color: #bfdbfe;">Abreu e Lima</div>
+                            <div class="heatmap-cell" style="background-color: #dbeafe;">São Lourenço</div>
+                            <div class="heatmap-cell" style="background-color: #eff6ff;">Ipojuca</div>
+                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Goiana</div>
+                            
+                            <div class="heatmap-cell" style="background-color: #bfdbfe;">Moreno</div>
+                            <div class="heatmap-cell" style="background-color: #dbeafe;">Escada</div>
+                            <div class="heatmap-cell" style="background-color: #eff6ff;">Ribeirão</div>
+                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Carpina</div>
+                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Limoeiro</div>
+                            
+                            <div class="heatmap-cell" style="background-color: #dbeafe;">Palmares</div>
+                            <div class="heatmap-cell" style="background-color: #eff6ff;">Bezerros</div>
+                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Serra Talhada</div>
+                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Arcoverde</div>
+                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Salgueiro</div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="chart-container">
-                    <div class="chart-box">
-                        <h3 class="chart-title">Evolução Mensal</h3>
-                        <div class="chart-wrapper">
+                    
+                    <!-- Distribuição por Gênero -->
+                    <div class="dashboard-chart">
+                        <div class="dashboard-chart-title">Distribuição por Gênero</div>
+                        <div class="dashboard-chart-content">
+                            <canvas id="generoChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Perfil da Persona -->
+                    <div class="dashboard-chart">
+                        <div class="dashboard-chart-title">Perfil da Persona</div>
+                        <div class="dashboard-chart-content">
+                            <canvas id="personaChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Evolução Temporal -->
+                    <div class="dashboard-chart">
+                        <div class="dashboard-chart-title">Evolução Mensal</div>
+                        <div class="dashboard-chart-content">
                             <canvas id="evolucaoChart"></canvas>
                         </div>
                     </div>
                     
-                    <div class="chart-box">
-                        <h3 class="chart-title">Faixa Etária</h3>
-                        <div class="chart-wrapper">
-                            <canvas id="faixaEtariaChart"></canvas>
+                    <!-- Faixa Etária -->
+                    <div class="dashboard-chart">
+                        <div class="dashboard-chart-title">Faixa Etária</div>
+                        <div class="dashboard-chart-content">
+                            <canvas id="idadeChart"></canvas>
                         </div>
                     </div>
                 </div>
                 
                 <div class="app-footer">
-                    Sistema PE sem Fome &copy; ${new Date().getFullYear()} - Todos os direitos reservados
+                    Dados atualizados em: ${new Date().toLocaleString('pt-BR')} | © Sistema PE sem Fome ${new Date().getFullYear()}
                 </div>
             `;
             
             // Inicializar gráficos
-            setTimeout(initCharts, 100);
+            setTimeout(initDashboardCharts, 100);
+        }
+
+        // Função para inicializar os gráficos do dashboard
+        function initDashboardCharts() {
+            // Gráfico de Top 5 Municípios
+            new Chart(document.getElementById('municipiosChart'), {
+                type: 'bar',
+                data: {
+                    labels: dashboardData.municipios.labels,
+                    datasets: [{
+                        label: 'Indivíduos',
+                        data: dashboardData.municipios.values,
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(59, 130, 246, 0.6)',
+                            'rgba(59, 130, 246, 0.5)',
+                            'rgba(59, 130, 246, 0.4)'
+                        ],
+                        borderColor: [
+                            'rgb(30, 58, 138)',
+                            'rgb(30, 58, 138)',
+                            'rgb(30, 58, 138)',
+                            'rgb(30, 58, 138)',
+                            'rgb(30, 58, 138)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Número de Indivíduos'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gráfico de Distribuição por Gênero
+            new Chart(document.getElementById('generoChart'), {
+                type: 'bar',
+                data: {
+                    labels: dashboardData.genero.labels,
+                    datasets: [{
+                        label: 'Quantidade',
+                        data: dashboardData.genero.values,
+                        backgroundColor: [
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(139, 92, 246, 0.7)',
+                            'rgba(16, 185, 129, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(239, 68, 68)',
+                            'rgb(59, 130, 246)',
+                            'rgb(139, 92, 246)',
+                            'rgb(16, 185, 129)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Gráfico de Perfil da Persona
+            new Chart(document.getElementById('personaChart'), {
+                type: 'bar',
+                data: {
+                    labels: dashboardData.persona.labels,
+                    datasets: [{
+                        label: 'Quantidade',
+                        data: dashboardData.persona.values,
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(245, 158, 11, 0.7)',
+                            'rgba(16, 185, 129, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(30, 58, 138)',
+                            'rgb(217, 119, 6)',
+                            'rgb(5, 150, 105)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Gráfico de Evolução Temporal
+            new Chart(document.getElementById('evolucaoChart'), {
+                type: 'line',
+                data: {
+                    labels: dashboardData.evolucao.labels,
+                    datasets: [{
+                        label: 'Indivíduos Cadastrados',
+                        data: dashboardData.evolucao.values,
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+
+            // Gráfico de Faixa Etária
+            new Chart(document.getElementById('idadeChart'), {
+                type: 'bar',
+                data: {
+                    labels: dashboardData.idade.labels,
+                    datasets: [{
+                        label: 'Indivíduos',
+                        data: dashboardData.idade.values,
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.6)',
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(59, 130, 246, 0.9)',
+                            'rgba(59, 130, 246, 1)'
+                        ],
+                        borderColor: [
+                            'rgb(30, 58, 138)',
+                            'rgb(30, 58, 138)',
+                            'rgb(30, 58, 138)',
+                            'rgb(30, 58, 138)',
+                            'rgb(30, 58, 138)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
         }
 
         // Renderização da página de usuários
@@ -1190,12 +1571,12 @@
                         
                         <div class="filter-group">
                             <label class="form-label">Data Início</label>
-                            <input type="date" id="data-inicio" class="form-control" value="2023-01-01">
+                            <input type="date" id="data-inicio" class="form-control" value="2025-01-01">
                         </div>
                         
                         <div class="filter-group">
                             <label class="form-label">Data Fim</label>
-                            <input type="date" id="data-fim" class="form-control" value="2023-12-31">
+                            <input type="date" id="data-fim" class="form-control" value="2025-12-31">
                         </div>
                     </div>
                     
@@ -1240,130 +1621,6 @@
                     Sistema PE sem Fome &copy; ${new Date().getFullYear()} - Relatório gerado em: ${new Date().toLocaleDateString()}
                 </div>
             `;
-        }
-
-        // Funções para gráficos
-        function initCharts() {
-            // Gráfico de Barras - Distribuição por Município
-            new Chart(
-                document.getElementById('distribuicaoChart'),
-                {
-                    type: 'bar',
-                    data: {
-                        labels: dashboardData.distribuicaoMunicipios.labels,
-                        datasets: [{
-                            label: 'Indivíduos',
-                            data: dashboardData.distribuicaoMunicipios.data,
-                            backgroundColor: 'rgba(63, 81, 181, 0.7)',
-                            borderColor: 'rgba(63, 81, 181, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: 'Quantidade de Indivíduos'
-                                }
-                            }
-                        }
-                    }
-                }
-            );
-
-            // Gráfico de Pizza - Situação dos Indivíduos
-            new Chart(
-                document.getElementById('situacaoChart'),
-                {
-                    type: 'pie',
-                    data: {
-                        labels: dashboardData.situacaoIndividuos.labels,
-                        datasets: [{
-                            data: dashboardData.situacaoIndividuos.data,
-                            backgroundColor: [
-                                'rgba(76, 175, 80, 0.7)',
-                                'rgba(255, 193, 7, 0.7)',
-                                'rgba(244, 67, 54, 0.7)'
-                            ],
-                            borderColor: [
-                                'rgba(76, 175, 80, 1)',
-                                'rgba(255, 193, 7, 1)',
-                                'rgba(244, 67, 54, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                            }
-                        }
-                    }
-                }
-            );
-
-            // Gráfico de Linhas - Evolução Mensal
-            new Chart(
-                document.getElementById('evolucaoChart'),
-                {
-                    type: 'line',
-                    data: {
-                        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'],
-                        datasets: [{
-                            label: 'Indivíduos Cadastrados',
-                            data: dashboardData.evolucaoMensal,
-                            fill: false,
-                            backgroundColor: 'rgba(63, 81, 181, 0.7)',
-                            borderColor: 'rgba(63, 81, 181, 1)',
-                            tension: 0.1,
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: false
-                            }
-                        }
-                    }
-                }
-            );
-
-            // Gráfico de Barras - Faixa Etária
-            new Chart(
-                document.getElementById('faixaEtariaChart'),
-                {
-                    type: 'bar',
-                    data: {
-                        labels: dashboardData.faixaEtaria.labels,
-                        datasets: [{
-                            label: 'Indivíduos',
-                            data: dashboardData.faixaEtaria.data,
-                            backgroundColor: 'rgba(255, 152, 0, 0.7)',
-                            borderColor: 'rgba(255, 152, 0, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                }
-            );
         }
 
         // Funções para relatório
