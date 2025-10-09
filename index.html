@@ -698,6 +698,165 @@
             color: white;
             font-weight: bold;
         }
+
+        /* Estilos específicos para Gestão de Equipamentos por Bairros */
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .search-box input {
+            flex: 1;
+        }
+        
+        .multiselect-container {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+        
+        .multiselect-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .multiselect-item:last-child {
+            border-bottom: none;
+        }
+        
+        .multiselect-item input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        .tab-container {
+            margin-top: 1.5rem;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .bairro-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .bairro-item:last-child {
+            border-bottom: none;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ddd;
+        }
+        
+        .equipamento-info {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .equipamento-detail {
+            flex: 1;
+        }
+        
+        .equipamento-detail h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .equipamento-detail p {
+            color: #666;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .badge-success {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .actions button {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .alert {
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
 <body>
@@ -771,6 +930,11 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="showPage('roles')">
                         <i class="fas fa-user-shield"></i> Perfis
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showPage('equipment-management')">
+                        <i class="fas fa-utensils"></i> Equipamentos por Bairros
                     </a>
                 </li>
                 <li class="nav-item">
@@ -909,6 +1073,91 @@
         </div>
     </div>
 
+    <!-- Modal para gerenciar vínculos de bairros -->
+    <div id="modal-bairros" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Gerenciar Bairros do Equipamento</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <div class="equipamento-info">
+                <div class="equipamento-detail">
+                    <h3 id="nome-equipamento-modal">Restaurante Popular Centro</h3>
+                    <p id="tipo-equipamento-modal">Restaurante Popular</p>
+                </div>
+                <div class="equipamento-detail">
+                    <p><strong>Município:</strong> <span id="municipio-equipamento-modal">Recife</span></p>
+                    <p><strong>Endereço:</strong> <span id="endereco-equipamento-modal">Rua da Aurora, 123</span></p>
+                </div>
+            </div>
+            
+            <div class="tab-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="bairros-vinculados">Bairros Vinculados</div>
+                    <div class="tab" data-tab="vincular-bairros">Vincular Novos Bairros</div>
+                </div>
+                
+                <div class="tab-content active" id="bairros-vinculados">
+                    <div class="card-header">
+                        <h4>Bairros Atualmente Vinculados</h4>
+                    </div>
+                    
+                    <div id="lista-bairros-vinculados">
+                        <!-- Lista de bairros vinculados será carregada aqui -->
+                    </div>
+                    
+                    <div class="empty-state" id="empty-state-bairros-vinculados" style="display: none;">
+                        <i>🏘️</i>
+                        <h3>Nenhum bairro vinculado</h3>
+                        <p>Vincule bairros a este equipamento para que apareçam nas consultas públicas.</p>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="vincular-bairros">
+                    <div class="form-group">
+                        <label class="form-label">Município *</label>
+                        <select id="select-municipio-bairro" class="form-control" required>
+                            <option value="">Selecione um município</option>
+                            <option value="1">Recife</option>
+                            <option value="2">Olinda</option>
+                            <option value="3">Jaboatão dos Guararapes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Bairros Disponíveis</label>
+                        <div class="multiselect-container" id="lista-bairros-disponiveis">
+                            <!-- Lista de bairros disponíveis será carregada aqui -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button class="btn btn-success" id="btn-vincular-bairros">Vincular Bairros Selecionados</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de confirmação -->
+    <div id="modal-confirmacao" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirmar Ação</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <p id="mensagem-confirmacao">Tem certeza que deseja remover este vínculo?</p>
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 1.5rem;">
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-danger" id="btn-confirmar-acao">Confirmar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Alertas -->
+    <div id="alert-container" style="position: fixed; top: 80px; right: 20px; width: 300px; z-index: 1100;"></div>
+
     <script>
         // Dados mockados para o dashboard
         const dashboardData = {
@@ -962,6 +1211,62 @@
             { id: "operator", name: "Analista", description: "Acesso apenas para registro de dados", permissions: ["Dashboard"] }
         ];
 
+        // Dados para Gestão de Equipamentos por Bairros
+        const equipamentos = [
+            {
+                id: 1,
+                nome: "Restaurante Popular Centro",
+                tipo: "restaurante",
+                municipio: "Recife",
+                endereco: "Rua da Aurora, 123",
+                bairros: [1, 2, 3]
+            },
+            {
+                id: 2,
+                nome: "Cozinha Comunitária Boa Vista",
+                tipo: "cozinha",
+                municipio: "Recife",
+                endereco: "Av. Conde da Boa Vista, 456",
+                bairros: [1, 4]
+            },
+            {
+                id: 3,
+                nome: "Banco de Alimentos Zona Norte",
+                tipo: "banco",
+                municipio: "Recife",
+                endereco: "Rua do Futuro, 789",
+                bairros: [5, 6]
+            },
+            {
+                id: 4,
+                nome: "Restaurante Popular Olinda",
+                tipo: "restaurante",
+                municipio: "Olinda",
+                endereco: "Av. Getúlio Vargas, 321",
+                bairros: [7, 8]
+            }
+        ];
+
+        const bairros = [
+            { id: 1, nome: "Santo Antônio", municipio: "Recife" },
+            { id: 2, nome: "São José", municipio: "Recife" },
+            { id: 3, nome: "Boa Vista", municipio: "Recife" },
+            { id: 4, nome: "Santo Amaro", municipio: "Recife" },
+            { id: 5, nome: "Casa Amarela", municipio: "Recife" },
+            { id: 6, nome: "Apipucos", municipio: "Recife" },
+            { id: 7, nome: "Bairro Novo", municipio: "Olinda" },
+            { id: 8, nome: "Carmo", municipio: "Olinda" },
+            { id: 9, nome: "Rio Doce", municipio: "Olinda" },
+            { id: 10, nome: "Piedade", municipio: "Jaboatão dos Guararapes" },
+            { id: 11, nome: "Candeias", municipio: "Jaboatão dos Guararapes" }
+        ];
+
+        const tiposEquipamentos = {
+            restaurante: "Restaurante Popular",
+            cozinha: "Cozinha Comunitária",
+            banco: "Banco de Alimentos"
+        };
+
         // Municípios de Pernambuco
         const municipiosPE = [
             "Todos os municípios",
@@ -1001,6 +1306,8 @@
         let currentPage = 'dashboard';
         let editingUserId = null;
         let editingRoleId = null;
+        let equipamentoSelecionado = null;
+        let bairrosSelecionados = [];
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
@@ -1033,6 +1340,9 @@
             document.getElementById('user-status')?.addEventListener('change', function() {
                 document.getElementById('status-text').textContent = this.checked ? 'Ativo' : 'Inativo';
             });
+
+            // Configurar event listeners para Gestão de Equipamentos
+            configurarEventListenersEquipamentos();
         });
 
         // Funções de navegação
@@ -1074,6 +1384,9 @@
                     break;
                 case 'roles':
                     renderRoles(contentElement);
+                    break;
+                case 'equipment-management':
+                    renderEquipmentManagement(contentElement);
                     break;
                 case 'report-municipality':
                     renderReportMunicipality(contentElement);
@@ -1544,6 +1857,86 @@
             `;
         }
 
+        // Renderização da Gestão de Equipamentos por Bairros
+        function renderEquipmentManagement(container) {
+            container.innerHTML = `
+                <div class="content-header">
+                    <h1 class="page-title"><i class="fas fa-utensils"></i> Gestão de Equipamentos por Bairros</h1>
+                    <div>
+                        <button class="btn btn-primary" id="btn-novo-equipamento">
+                            <i class="fas fa-plus"></i> Novo Equipamento
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Lista de Equipamentos</h3>
+                        <div class="search-box">
+                            <input type="text" placeholder="Buscar equipamento..." id="buscar-equipamento" class="form-control">
+                            <button class="btn btn-primary">Buscar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label class="form-label">Filtrar por Município</label>
+                            <select id="filtro-municipio" class="form-control">
+                                <option value="">Todos os municípios</option>
+                                <option value="1">Recife</option>
+                                <option value="2">Olinda</option>
+                                <option value="3">Jaboatão dos Guararapes</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="form-label">Filtrar por Tipo</label>
+                            <select id="filtro-tipo" class="form-control">
+                                <option value="">Todos os tipos</option>
+                                <option value="restaurante">Restaurante Popular</option>
+                                <option value="cozinha">Cozinha Comunitária</option>
+                                <option value="banco">Banco de Alimentos</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome do Equipamento</th>
+                                    <th>Tipo</th>
+                                    <th>Município</th>
+                                    <th>Bairros Vinculados</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-equipamentos">
+                                <!-- Dados serão carregados via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="empty-state" id="empty-state-equipamentos" style="display: none;">
+                        <i>📋</i>
+                        <h3>Nenhum equipamento encontrado</h3>
+                        <p>Clique em "Novo Equipamento" para adicionar um equipamento ao sistema.</p>
+                    </div>
+                </div>
+                
+                <div class="app-footer">
+                    Sistema PE sem Fome &copy; ${new Date().getFullYear()} - Gestão de Equipamentos por Bairros
+                </div>
+            `;
+            
+            // Carregar lista de equipamentos
+            carregarListaEquipamentos();
+            
+            // Configurar event listeners
+            document.getElementById('btn-novo-equipamento').addEventListener('click', function() {
+                mostrarAlerta('Funcionalidade de cadastro de equipamentos será implementada.', 'success');
+            });
+        }
+
         // Renderização do Relatório por Município
         function renderReportMunicipality(container) {
             container.innerHTML = `
@@ -1620,6 +2013,252 @@
                     Sistema PE sem Fome &copy; ${new Date().getFullYear()} - Relatório gerado em: ${new Date().toLocaleDateString()}
                 </div>
             `;
+        }
+
+        // Funções para Gestão de Equipamentos por Bairros
+        function configurarEventListenersEquipamentos() {
+            // Tabs
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('tab')) {
+                    const tabId = e.target.getAttribute('data-tab');
+                    ativarTab(tabId);
+                }
+            });
+            
+            // Seleção de município para bairros
+            document.addEventListener('change', function(e) {
+                if (e.target.id === 'select-municipio-bairro') {
+                    const municipioId = e.target.value;
+                    carregarBairrosDisponiveis(municipioId);
+                }
+            });
+            
+            // Botão para vincular bairros
+            document.addEventListener('click', function(e) {
+                if (e.target.id === 'btn-vincular-bairros') {
+                    vincularBairros();
+                }
+            });
+        }
+
+        function carregarListaEquipamentos() {
+            const tbody = document.getElementById('lista-equipamentos');
+            const emptyState = document.getElementById('empty-state-equipamentos');
+            
+            if (equipamentos.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            let html = '';
+            equipamentos.forEach(equipamento => {
+                const bairrosVinculados = equipamento.bairros.map(id => {
+                    const bairro = bairros.find(b => b.id === id);
+                    return bairro ? bairro.nome : '';
+                }).filter(nome => nome !== '');
+                
+                html += `
+                    <tr>
+                        <td>${equipamento.nome}</td>
+                        <td><span class="badge badge-primary">${tiposEquipamentos[equipamento.tipo]}</span></td>
+                        <td>${equipamento.municipio}</td>
+                        <td>${bairrosVinculados.length} bairro(s)</td>
+                        <td class="actions">
+                            <button class="btn btn-primary" onclick="abrirModalBairros(${equipamento.id})">
+                                <i class="fas fa-link"></i> Gerenciar Bairros
+                            </button>
+                            <button class="btn btn-outline" onclick="editarEquipamento(${equipamento.id})">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+
+        function abrirModalBairros(equipamentoId) {
+            equipamentoSelecionado = equipamentos.find(e => e.id === equipamentoId);
+            
+            if (!equipamentoSelecionado) return;
+            
+            // Preencher informações do equipamento
+            document.getElementById('nome-equipamento-modal').textContent = equipamentoSelecionado.nome;
+            document.getElementById('tipo-equipamento-modal').textContent = tiposEquipamentos[equipamentoSelecionado.tipo];
+            document.getElementById('municipio-equipamento-modal').textContent = equipamentoSelecionado.municipio;
+            document.getElementById('endereco-equipamento-modal').textContent = equipamentoSelecionado.endereco;
+            
+            // Carregar bairros vinculados
+            carregarBairrosVinculados();
+            
+            // Resetar seleção de município e bairros
+            document.getElementById('select-municipio-bairro').value = '';
+            document.getElementById('lista-bairros-disponiveis').innerHTML = '';
+            
+            // Mostrar modal
+            document.getElementById('modal-bairros').classList.remove('hidden');
+        }
+
+        function carregarBairrosVinculados() {
+            const container = document.getElementById('lista-bairros-vinculados');
+            const emptyState = document.getElementById('empty-state-bairros-vinculados');
+            
+            if (!equipamentoSelecionado || !equipamentoSelecionado.bairros || equipamentoSelecionado.bairros.length === 0) {
+                container.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            let html = '';
+            equipamentoSelecionado.bairros.forEach(bairroId => {
+                const bairro = bairros.find(b => b.id === bairroId);
+                if (bairro) {
+                    html += `
+                        <div class="bairro-item">
+                            <div>
+                                <strong>${bairro.nome}</strong>
+                                <div style="font-size: 0.875rem; color: #666;">${bairro.municipio}</div>
+                            </div>
+                            <button class="btn btn-danger" onclick="solicitarRemocaoBairro(${bairro.id})">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                        </div>
+                    `;
+                }
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function carregarBairrosDisponiveis(municipioId) {
+            const container = document.getElementById('lista-bairros-disponiveis');
+            
+            if (!municipioId) {
+                container.innerHTML = '<div class="empty-state"><p>Selecione um município para carregar os bairros</p></div>';
+                return;
+            }
+            
+            const municipio = municipioId === '1' ? 'Recife' : 
+                             municipioId === '2' ? 'Olinda' : 
+                             municipioId === '3' ? 'Jaboatão dos Guararapes' : '';
+            
+            const bairrosMunicipio = bairros.filter(b => b.municipio === municipio);
+            
+            if (bairrosMunicipio.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>Nenhum bairro encontrado para este município</p></div>';
+                return;
+            }
+            
+            let html = '';
+            bairrosMunicipio.forEach(bairro => {
+                // Verificar se o bairro já está vinculado
+                const jaVinculado = equipamentoSelecionado.bairros.includes(bairro.id);
+                
+                html += `
+                    <div class="multiselect-item">
+                        <input type="checkbox" id="bairro-${bairro.id}" value="${bairro.id}" ${jaVinculado ? 'disabled' : ''} onchange="toggleBairroSelecionado(${bairro.id}, this.checked)">
+                        <label for="bairro-${bairro.id}" style="${jaVinculado ? 'color: #999;' : ''}">${bairro.nome} ${jaVinculado ? '(já vinculado)' : ''}</label>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function toggleBairroSelecionado(bairroId, selecionado) {
+            if (selecionado) {
+                if (!bairrosSelecionados.includes(bairroId)) {
+                    bairrosSelecionados.push(bairroId);
+                }
+            } else {
+                const index = bairrosSelecionados.indexOf(bairroId);
+                if (index > -1) {
+                    bairrosSelecionados.splice(index, 1);
+                }
+            }
+        }
+
+        function vincularBairros() {
+            if (bairrosSelecionados.length === 0) {
+                mostrarAlerta('Selecione pelo menos um bairro para vincular.', 'error');
+                return;
+            }
+            
+            // Simular adição dos bairros
+            bairrosSelecionados.forEach(bairroId => {
+                if (!equipamentoSelecionado.bairros.includes(bairroId)) {
+                    equipamentoSelecionado.bairros.push(bairroId);
+                }
+            });
+            
+            // Atualizar lista de bairros vinculados
+            carregarBairrosVinculados();
+            
+            // Limpar seleção
+            bairrosSelecionados = [];
+            document.getElementById('select-municipio-bairro').value = '';
+            document.getElementById('lista-bairros-disponiveis').innerHTML = '';
+            
+            // Mostrar mensagem de sucesso
+            mostrarAlerta('Vínculos de bairros atualizados com sucesso.', 'success');
+            
+            // Voltar para a aba de bairros vinculados
+            ativarTab('bairros-vinculados');
+        }
+
+        function solicitarRemocaoBairro(bairroId) {
+            const bairro = bairros.find(b => b.id === bairroId);
+            if (!bairro) return;
+            
+            document.getElementById('mensagem-confirmacao').textContent = 
+                `Tem certeza que deseja remover o vínculo entre "${equipamentoSelecionado.nome}" e o bairro "${bairro.nome}"?`;
+            
+            document.getElementById('btn-confirmar-acao').onclick = function() {
+                removerVinculoBairro(bairroId);
+            };
+            
+            document.getElementById('modal-confirmacao').classList.remove('hidden');
+        }
+
+        function removerVinculoBairro(bairroId) {
+            const index = equipamentoSelecionado.bairros.indexOf(bairroId);
+            if (index > -1) {
+                equipamentoSelecionado.bairros.splice(index, 1);
+            }
+            
+            // Atualizar lista de bairros vinculados
+            carregarBairrosVinculados();
+            
+            // Fechar modal de confirmação
+            document.getElementById('modal-confirmacao').classList.add('hidden');
+            
+            // Mostrar mensagem de sucesso
+            mostrarAlerta('Vínculo removido com sucesso.', 'success');
+        }
+
+        function ativarTab(tabId) {
+            // Desativar todas as abas
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Ativar aba selecionada
+            document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function editarEquipamento(equipamentoId) {
+            mostrarAlerta(`Funcionalidade de edição do equipamento ${equipamentoId} será implementada.`, 'success');
         }
 
         // Funções para relatório
@@ -1834,6 +2473,8 @@
             });
             editingUserId = null;
             editingRoleId = null;
+            equipamentoSelecionado = null;
+            bairrosSelecionados = [];
         }
 
         function handleLogout() {
@@ -1841,6 +2482,26 @@
             document.getElementById('admin-panel').classList.add('hidden');
             document.getElementById('login-page').classList.remove('hidden');
             document.getElementById('loginForm').reset();
+        }
+
+        function mostrarAlerta(mensagem, tipo) {
+            const alertContainer = document.getElementById('alert-container');
+            const alertId = 'alert-' + Date.now();
+            
+            const alert = document.createElement('div');
+            alert.id = alertId;
+            alert.className = `alert alert-${tipo === 'error' ? 'error' : 'success'}`;
+            alert.textContent = mensagem;
+            
+            alertContainer.appendChild(alert);
+            
+            // Remover alerta após 5 segundos
+            setTimeout(() => {
+                const alertElement = document.getElementById(alertId);
+                if (alertElement) {
+                    alertElement.remove();
+                }
+            }, 5000);
         }
     </script>
 </body>
