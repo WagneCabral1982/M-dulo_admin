@@ -48,7 +48,6 @@
             min-height: 100vh;
         }
         
-        /* Header */
         .app-header {
             grid-area: header;
             background-color: var(--primary-color);
@@ -91,7 +90,6 @@
             background: rgba(255, 255, 255, 0.3);
         }
         
-        /* Sidebar */
         .app-sidebar {
             grid-area: sidebar;
             background-color: var(--background-white);
@@ -135,10 +133,10 @@
         }
         
         .submenu {
-            padding-left: 40px;
+            padding-left: 20px;
+            background-color: #f8f9fa;
         }
         
-        /* Main Content */
         .app-main {
             grid-area: main;
             padding: 20px;
@@ -161,7 +159,6 @@
             font-weight: 600;
         }
         
-        /* Cards e Tabelas */
         .card {
             background-color: var(--background-white);
             border-radius: 8px;
@@ -193,397 +190,10 @@
             font-weight: 600;
             color: var(--text-light);
         }
-        
-        tr:hover {
-            background-color: rgba(30, 58, 138, 0.03);
-        }
-        
-        /* KPIs */
-        .kpi-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .kpi-card {
-            background-color: var(--background-white);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: transform 0.3s;
-            position: relative;
-        }
-        
-        .kpi-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .kpi-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .kpi-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .kpi-label {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-        
-        /* Gráficos */
-        .chart-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .chart-box {
-            background-color: var(--background-white);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            padding: 20px;
-        }
-        
-        .chart-title {
-            margin: 0 0 15px 0;
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-        
-        .chart-wrapper {
-            width: 100%;
-            height: 300px;
-            position: relative;
-        }
-        
-        /* Formulários e Filtros */
-        .filter-box {
-            background-color: var(--background-white);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .filter-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .filter-group {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 0.95rem;
-        }
-        
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        /* Botões */
-        .btn {
-            padding: 10px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #172554;
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #3d8b40;
-        }
-        
-        .btn-danger {
-            background-color: var(--danger-color);
-            color: white;
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .btn-outline:hover {
-            background-color: rgba(30, 58, 138, 0.1);
-        }
-        
-        /* Login */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #172554 100%);
-        }
-        
-        .login-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
-            padding: 35px;
-            text-align: center;
-        }
-        
-        .login-title {
-            text-align: center;
-            margin-bottom: 25px;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .login-title h1 {
-            font-weight: 600;
-            font-size: 1.8rem;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .input-icon {
-            position: relative;
-        }
-        
-        .input-icon i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
-        }
-        
-        .input-icon input {
-            padding-left: 40px;
-        }
-        
-        #loginError {
-            color: var(--danger-color);
-            margin-top: 15px;
-            text-align: center;
-            background: rgba(244, 67, 54, 0.1);
-            padding: 10px;
-            border-radius: 4px;
-            display: none;
-        }
-        
-        .forgot-password {
-            text-align: right;
-            margin-top: -10px;
-            margin-bottom: 20px;
-        }
-        
-        .forgot-password a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Footer */
-        .app-footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 20px;
-        }
-        
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .modal-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-title {
-            margin: 0;
-            font-size: 1.2rem;
-        }
-        
-        .modal-body {
-            padding: 20px;
-        }
-        
-        .modal-footer {
-            padding: 15px 20px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-        
-        /* Permissões */
-        .permissions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .permission-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        /* Switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-        
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 24px;
-        }
-        
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        
-        input:checked + .slider {
-            background-color: var(--secondary-color);
-        }
-        
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .app-container {
-                grid-template-columns: 1fr;
-                grid-template-areas: 
-                    "header"
-                    "main";
-            }
-            
-            .app-sidebar {
-                display: none;
-            }
-            
-            .chart-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Estilos específicos do dashboard */
+
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
             margin-bottom: 25px;
         }
@@ -593,2059 +203,423 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: var(--shadow);
-            position: relative;
             transition: all 0.3s;
         }
-        
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        }
-        
-        .dashboard-card-title {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .dashboard-card-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        
-        .dashboard-card-percentage {
-            color: var(--secondary-color);
-            font-weight: 600;
-        }
-        
+
+        .dashboard-card:hover { transform: translateY(-5px); }
+
+        .dashboard-card-title { font-size: 0.85rem; color: var(--text-light); font-weight: 600; }
+        .dashboard-card-value { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); margin: 5px 0; }
+
         .dashboard-charts-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .dashboard-chart {
-            background-color: var(--background-white);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            padding: 20px;
-            height: 320px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .dashboard-chart-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 15px;
-        }
-        
-        .dashboard-chart-content {
-            flex: 1;
-            position: relative;
-        }
-        
-        .tooltip {
-            position: absolute;
-            background: var(--text-dark);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            display: none;
-        }
-        
-        .dashboard-card:hover .tooltip {
-            display: block;
-        }
-        
-        .mini-chart {
-            height: 60px;
-            display: flex;
-            align-items: flex-end;
-            gap: 4px;
-            margin-top: 10px;
-        }
-        
-        .mini-bar {
-            flex: 1;
-            background-color: var(--primary-color);
-            border-radius: 3px 3px 0 0;
-        }
-        
-        .heatmap {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            height: 100%;
-            gap: 4px;
-        }
-        
-        .heatmap-cell {
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.7rem;
-            color: white;
-            font-weight: bold;
         }
 
-        /* Estilos específicos para Gestão de Equipamentos por Bairros */
-        .search-box {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 1rem;
+        .dashboard-chart {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            height: 350px;
         }
+
+        /* Formulários */
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 4px; }
+
+        /* Botões */
+        .btn { padding: 10px 16px; border-radius: 4px; cursor: pointer; font-weight: 500; border: none; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary { background-color: var(--primary-color); color: white; }
+        .btn-secondary { background-color: var(--secondary-color); color: white; }
+        .btn-danger { background-color: var(--danger-color); color: white; }
+        .btn-outline { background-color: transparent; border: 1px solid var(--border-color); }
+
+        /* Modais */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: white; padding: 25px; border-radius: 8px; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         
-        .search-box input {
-            flex: 1;
-        }
-        
-        .multiselect-container {
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            max-height: 200px;
-            overflow-y: auto;
-            padding: 0.5rem;
-        }
-        
-        .multiselect-item {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .multiselect-item:last-child {
-            border-bottom: none;
-        }
-        
-        .multiselect-item input {
-            width: auto;
-            margin-right: 0.5rem;
-        }
-        
-        .tab-container {
-            margin-top: 1.5rem;
-        }
-        
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 1rem;
-        }
-        
-        .tab {
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-        }
-        
-        .tab.active {
-            border-bottom: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .bairro-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .bairro-item:last-child {
-            border-bottom: none;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-light);
-        }
-        
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #ddd;
-        }
-        
-        .equipamento-info {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .equipamento-detail {
-            flex: 1;
-        }
-        
-        .equipamento-detail h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-        
-        .equipamento-detail p {
-            color: #666;
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .badge-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .badge-success {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-        
-        .badge-warning {
-            background-color: var(--warning-color);
-            color: white;
-        }
-        
-        .actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .actions button {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.875rem;
-        }
-        
-        .alert {
-            padding: 0.75rem 1rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-        
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+        .badge-primary { background: #dbeafe; color: #1e3a8a; }
+
+        /* Login */
+        .login-container { display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--primary-color); }
+        .login-card { background: white; padding: 40px; border-radius: 10px; width: 100%; max-width: 400px; }
     </style>
 </head>
 <body>
+
     <!-- Tela de Login -->
     <div id="login-page" class="login-container">
         <div class="login-card">
-            <div class="login-title">
-            <img src="https://raw.githubusercontent.com/WagneCabral1982/PEsemFome2/main/Logotipo%20PE_sem_Fome.png" alt="Logotipo PE sem Fome" width="50"> Módulo Administrador
-             </div>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="https://raw.githubusercontent.com/WagneCabral1982/PEsemFome2/main/Logotipo%20PE_sem_Fome.png" alt="Logo" width="80">
+                <h2 style="color: var(--primary-color); margin-top: 10px;">Acesso Administrativo</h2>
+            </div>
             <form id="loginForm">
                 <div class="form-group">
                     <label class="form-label">Usuário</label>
-                    <div class="input-icon">
-                        <i class="fas fa-user"></i>
-                        <input type="text" id="username" class="form-control" placeholder="Digite seu usuário" required>
-                    </div>
+                    <input type="text" id="username" class="form-control" placeholder="admin" required>
                 </div>
-                
                 <div class="form-group">
                     <label class="form-label">Senha</label>
-                    <div class="input-icon">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="password" class="form-control" placeholder="Digite sua senha" required>
-                    </div>
+                    <input type="password" id="password" class="form-control" placeholder="admin123" required>
                 </div>
-                
-                <div class="forgot-password">
-                    <a href="#">Esqueceu sua senha?</a>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Entrar</button>
+                <p id="loginError" style="color: red; text-align: center; margin-top: 15px; display: none;">Credenciais inválidas</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Painel Principal -->
+    <div id="admin-panel" class="app-container hidden">
+        <header class="app-header">
+            <div class="header-title">
+                <img src="https://raw.githubusercontent.com/WagneCabral1982/PEsemFome2/main/Logotipo%20PE_sem_Fome.png" alt="Logo" width="40">
+                PE sem Fome | Admin
+            </div>
+            <div class="user-menu">
+                <span id="current-user-display">Administrador</span>
+                <button class="logout-btn" onclick="handleLogout()">Sair</button>
+            </div>
+        </header>
+
+        <nav class="app-sidebar">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link active" onclick="showPage('dashboard')"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" onclick="showPage('users')"><i class="fas fa-users"></i> Usuários</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" onclick="showPage('equipment')"><i class="fas fa-utensils"></i> Equipamentos</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleSubmenu(this)"><i class="fas fa-file-alt"></i> Relatórios <i class="fas fa-chevron-down" style="margin-left: auto;"></i></a>
+                    <ul class="submenu nav-menu" style="display: none;">
+                        <li><a href="#" class="nav-link" onclick="showPage('report-municipality')">Por Município</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="app-main" id="main-content">
+            <!-- Conteúdo Dinâmico -->
+        </main>
+    </div>
+
+    <!-- Modal Novo Equipamento -->
+    <div id="modal-equipment" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-eq-title">Novo Equipamento</h3>
+                <button onclick="closeModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            <form id="form-equipment">
+                <input type="hidden" id="eq-id">
+                <div class="form-group">
+                    <label class="form-label">Nome do Equipamento</label>
+                    <input type="text" id="eq-nome" class="form-control" required>
                 </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    <i class="fas fa-sign-in-alt"></i> Entrar
-                </button>
-                
-                <div id="loginError" class="hidden">
-                    <i class="fas fa-exclamation-circle"></i> Usuário ou senha inválidos
+                <div class="form-group">
+                    <label class="form-label">Tipo</label>
+                    <select id="eq-tipo" class="form-control" required>
+                        <option value="cozinha">Cozinha Comunitária</option>
+                        <option value="restaurante">Restaurante Popular</option>
+                        <option value="CRAS">CRAS</option>
+                        <option value="CREAS">CREAS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Município</label>
+                    <select id="eq-municipio" class="form-control" required onchange="updateBairrosDropdown()">
+                        <option value="Recife">Recife</option>
+                        <option value="Olinda">Olinda</option>
+                        <option value="Jaboatão dos Guararapes">Jaboatão dos Guararapes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço</label>
+                    <input type="text" id="eq-endereco" class="form-control" required>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Aplicação Principal -->
-    <div id="admin-panel" class="app-container hidden">
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-title">
-                <img src="https://raw.githubusercontent.com/WagneCabral1982/PEsemFome2/main/Logotipo%20PE_sem_Fome.png" alt="Logotipo PE sem Fome" width="50">
-                  Módulo Administrador
-            </div>
-            <div class="user-menu">
-                <span id="current-user">Wagne Cabral</span>
-                <button class="logout-btn" onclick="handleLogout()">
-                    <i class="fas fa-sign-out-alt"></i> Sair
-                </button>
-            </div>
-        </header>
-        
-        <!-- Sidebar -->
-        <nav class="app-sidebar">
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" onclick="showPage('dashboard')">
-                        <i class="fas fa-tachometer-alt"></i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="showPage('users')">
-                        <i class="fas fa-users"></i> Usuários
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="showPage('roles')">
-                        <i class="fas fa-user-shield"></i> Perfis
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="showPage('equipment-management')">
-                        <i class="fas fa-utensils"></i> Equipamentos por Bairros
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="toggleSubmenu(this)">
-                        <i class="fas fa-chart-bar"></i> Relatórios
-                        <i class="fas fa-chevron-down" style="margin-left: auto;"></i>
-                    </a>
-                    <ul class="submenu nav-menu" style="display: none;">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" onclick="showPage('report-municipality')">
-                                <i class="fas fa-map-marker-alt"></i> Indivíduo por Município
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-utensils"></i> Cozinhas Comunitárias
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-building"></i> Equipamentos Sociais
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-cog"></i> Configurações
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        
-        <!-- Main Content -->
-        <main class="app-main" id="main-content">
-            <!-- Dashboard será carregado aqui inicialmente -->
-        </main>
-    </div>
-
-    <!-- Modal Cadastro de Usuário -->
-    <div id="modal-user" class="modal-overlay hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Cadastrar Usuário</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">Nome Completo*</label>
-                    <input type="text" id="user-name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">CPF*</label>
-                    <input type="text" id="user-cpf" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">E-mail*</label>
-                    <input type="email" id="user-email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Perfil*</label>
-                    <select id="user-role" class="form-control" required>
-                        <option value="">Selecione um perfil</option>
-                        <option value="admin">Administrador</option>
-                        <option value="manager">Gestor</option>
-                        <option value="Analyst">Analista</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Status</label>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <label class="switch">
-                            <input type="checkbox" id="user-status" checked>
-                            <span class="slider"></span>
-                        </label>
-                        <span id="status-text">Ativo</span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
-                <button class="btn btn-primary" onclick="saveUser()">Salvar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Cadastro de Perfil -->
-    <div id="modal-role" class="modal-overlay hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Cadastrar Perfil</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">Nome do Perfil*</label>
-                    <input type="text" id="role-name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Descrição</label>
-                    <textarea id="role-description" class="form-control" rows="3"></textarea>
-                </div>
-                
-                <h4>Permissões</h4>
-                <div class="permissions-grid">
-                    <div class="permission-item">
-                        <input type="checkbox" id="perm-users" value="users">
-                        <label for="perm-users">Gerenciar Usuários</label>
-                    </div>
-                    <div class="permission-item">
-                        <input type="checkbox" id="perm-roles" value="roles">
-                        <label for="perm-roles">Gerenciar Perfis</label>
-                    </div>
-                    <div class="permission-item">
-                        <input type="checkbox" id="perm-dashboard" value="dashboard" checked>
-                        <label for="perm-dashboard">Visualizar Dashboard</label>
-                    </div>
-                    <div class="permission-item">
-                        <input type="checkbox" id="perm-reports" value="reports" checked>
-                        <label for="perm-reports">Visualizar Relatórios</label>
-                    </div>
-                    <div class="permission-item">
-                        <input type="checkbox" id="perm-export" value="export">
-                        <label for="perm-export">Exportar Dados</label>
-                    </div>
-                    <div class="permission-item">
-                        <input type="checkbox" id="perm-settings" value="settings">
-                        <label for="perm-settings">Configurações</label>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
-                <button class="btn btn-primary" onclick="saveRole()">Salvar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para gerenciar vínculos de bairros -->
-    <div id="modal-bairros" class="modal-overlay hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Gerenciar Bairros do Equipamento</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            
-            <div class="equipamento-info">
-                <div class="equipamento-detail">
-                    <h3 id="nome-equipamento-modal">Cozinha Comunitária Gurupé</h3>
-                    <p id="tipo-equipamento-modal">Cozinha Comunitária</p>
-                </div>
-                <div class="equipamento-detail">
-                    <p><strong>Município:</strong> <span id="municipio-equipamento-modal">Recife</span></p>
-                    <p><strong>Endereço:</strong> <span id="endereco-equipamento-modal">Rua Gurupé nº 253</span></p>
-                </div>
-            </div>
-            
-            <div class="tab-container">
-                <div class="tabs">
-                    <div class="tab active" data-tab="bairros-vinculados">Bairros Vinculados</div>
-                    <div class="tab" data-tab="vincular-bairros">Vincular Novos Bairros</div>
-                </div>
-                
-                <div class="tab-content active" id="bairros-vinculados">
-                    <div class="card-header">
-                        <h4>Bairros Atualmente Vinculados</h4>
-                    </div>
-                    
-                    <div id="lista-bairros-vinculados">
-                        <!-- Lista de bairros vinculados será carregada aqui -->
-                    </div>
-                    
-                    <div class="empty-state" id="empty-state-bairros-vinculados" style="display: none;">
-                        <i>🏘️</i>
-                        <h3>Nenhum bairro vinculado</h3>
-                        <p>Vincule bairros a este equipamento para que apareçam nas consultas públicas.</p>
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="vincular-bairros">
-                    <div class="form-group">
-                        <label class="form-label">Município *</label>
-                        <select id="select-municipio-bairro" class="form-control" required>
-                            <option value="">Selecione um município</option>
-                            <option value="1">Recife</option>
-                            <option value="2">Olinda</option>
-                            <option value="3">Jaboatão dos Guararapes</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Bairros Disponíveis</label>
-                        <div class="multiselect-container" id="lista-bairros-disponiveis">
-                            <!-- Lista de bairros disponíveis será carregada aqui -->
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <button class="btn btn-success" id="btn-vincular-bairros">Vincular Bairros Selecionados</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal de confirmação -->
-    <div id="modal-confirmacao" class="modal-overlay hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Confirmar Ação</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <p id="mensagem-confirmacao">Tem certeza que deseja remover este vínculo?</p>
-            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 1.5rem;">
-                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
-                <button class="btn btn-danger" id="btn-confirmar-acao">Confirmar</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Alertas -->
-    <div id="alert-container" style="position: fixed; top: 80px; right: 20px; width: 300px; z-index: 1100;"></div>
+    <!-- Container de Alertas -->
+    <div id="alert-container" style="position: fixed; top: 20px; right: 20px; z-index: 2000;"></div>
 
     <script>
-        // Dados mockados para o dashboard
-        const dashboardData = {
-            totalIndividuos: 4876,
-            localizados: 3123,
-            naoLocalizados: 1753,
-            situacaoRua: 1367,
-            nomeSocial: 28, // %
-            estrangeiros: 142,
-            municipios: {
-                labels: ['Recife', 'Jaboatão', 'Olinda', 'Caruaru', 'Petrolina'],
-                values: [1200, 980, 750, 520, 380]
-            },
-            genero: {
-                labels: ['Feminino', 'Masculino', 'Não Binário', 'Outro'],
-                values: [2045, 1860, 390, 581]
-            },
-            persona: {
-                labels: ['Para mim', 'Profissional', 'Cidadão Apoiador'],
-                values: [2536, 1168, 1172]
-            },
-            evolucao: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                values: [320, 410, 380, 450, 520, 480, 510, 590, 630, 710, 680, 487]
-            },
-            idade: {
-                labels: ['0-18', '19-30', '31-45', '46-60', '60+'],
-                values: [1250, 1560, 980, 760, 326]
-            }
-        };
-
-        // Dados de exemplo para o relatório
-        const reportData = [
-            { municipio: "Recife", total: 1234, localizados: 890, naoLocalizados: 344, situacaoRua: "32%" },
-            { municipio: "Olinda", total: 876, localizados: 654, naoLocalizados: 222, situacaoRua: "25%" },
-            { municipio: "Jaboatão", total: 765, localizados: 543, naoLocalizados: 222, situacaoRua: "29%" },
-            { municipio: "Caruaru", total: 543, localizados: 432, naoLocalizados: 111, situacaoRua: "22%" },
-            { municipio: "Petrolina", total: 432, localizados: 321, naoLocalizados: 111, situacaoRua: "18%" }
+        // Dados do Sistema
+        let equipamentos = [
+            { id: 1, nome: "Cozinha Comunitária: Gurupé", tipo: "cozinha", municipio: "Recife", endereco: "Rua Gurupé nº 253, Afogados", bairros: [1, 2] },
+            { id: 2, nome: "CRAS Alto do Mandú", tipo: "CRAS", municipio: "Recife", endereco: "Rua Dr. Eurico Chaves, 370", bairros: [3] }
         ];
 
-        // Dados de exemplo para usuários e perfis
-        let users = [
-            { id: 1, name: "Admin", email: "admin@pesemfome.pe.gov.br", cpf: "123.456.789-00", role: "admin", status: true },
-            { id: 2, name: "Gestor", email: "gestor@pesemfome.pe.gov.br", cpf: "987.654.321-00", role: "manager", status: true },
-            { id: 3, name: "Analista", email: "analista@pesemfome.pe.gov.br", cpf: "456.789.123-00", role: "analyst", status: false }
+        const bairros = [
+            { id: 1, nome: "Afogados", municipio: "Recife" },
+            { id: 2, nome: "Água Fria", municipio: "Recife" },
+            { id: 3, nome: "Alto do Mandu", municipio: "Recife" },
+            { id: 4, nome: "Bairro Novo", municipio: "Olinda" },
+            { id: 5, nome: "Piedade", municipio: "Jaboatão dos Guararapes" }
         ];
 
-        let roles = [
-            { id: "admin", name: "Administrador", description: "Acesso completo ao sistema", permissions: ["Usuários", "Papéis", "Dashboard", "Relatórios", "Exportar", "Configurações"] },
-            { id: "manager", name: "Gestor", description: "Acesso a relatórios e gestão básica", permissions: ["Dashboard", "Relatórios", "Exportar"] },
-            { id: "operator", name: "Analista", description: "Acesso apenas para registro de dados", permissions: ["Dashboard"] }
-        ];
-
-        // Dados para Gestão de Equipamentos por Bairros
-        const equipamentos = [
-            {
-                id: 1,
-                nome: "Cozinha Comunitária: Gurupé",
-                tipo: "Cozinha Comunitária",
-                municipio: "Recife",
-                endereco: "Rua Gurupé nº 253, Afogados",
-                bairros: [1, 2, 3]
-            },
-            {
-                id: 2,
-                nome: "CRAS Alto do Mandú",
-                tipo: "CRAS",
-                municipio: "Recife",
-                endereco: "Rua Dr. Eurico Chaves, 370",
-                bairros: [1, 4]
-            },
-            {
-                id: 3,
-                nome: "CRAS Mustardinha",
-                tipo: "CRAS",
-                municipio: "Recife",
-                endereco: "Rua EUDORO PIRES, 50",
-                bairros: [5, 6]
-            },
-            {
-                id: 4,
-                nome: "CREAS ESPINHEIRO",
-                tipo: "CREAS",
-                municipio: "Recife",
-                endereco: "Rua Quarenta e Oito, 693",
-                bairros: [7, 8]
-            },
-
-                {
-                id: 5,
-                nome: "CENTRO POP GLÓRIA",
-                tipo: "CentroPOP",
-                municipio: "Olinda",
-                endereco: "Rua do Sossego , 563",
-                bairros: [9, 10]
-            }
-        ];
-
-      
-            const bairros = [
-    // Recife
-    { id: 1, nome: "Afogados", municipio: "Recife" },
-    { id: 2, nome: "Água Fria", municipio: "Recife" },
-    { id: 3, nome: "Alto do Mandu", municipio: "Recife" },
-    { id: 4, nome: "Alto José Bonifácio", municipio: "Recife" },
-    { id: 5, nome: "Alto José do Pinho", municipio: "Recife" },
-    { id: 6, nome: "Alto Santa Terezinha", municipio: "Recife" },
-    { id: 7, nome: "Apipucos", municipio: "Recife" },
-    { id: 8, nome: "Areias", municipio: "Recife" },
-    { id: 9, nome: "Bairro do Recife", municipio: "Recife" },
-    { id: 10, nome: "Barro", municipio: "Recife" },
-    { id: 11, nome: "Beberibe", municipio: "Recife" },
-    { id: 12, nome: "Boa Viagem", municipio: "Recife" },
-    { id: 13, nome: "Boa Vista", municipio: "Recife" },
-    { id: 14, nome: "Bomba do Hemetério", municipio: "Recife" },
-    { id: 15, nome: "Bongi", municipio: "Recife" },
-    { id: 16, nome: "Brasília Teimosa", municipio: "Recife" },
-    { id: 17, nome: "Cabanga", municipio: "Recife" },
-    { id: 18, nome: "Caçote", municipio: "Recife" },
-    { id: 19, nome: "Cajueiro", municipio: "Recife" },
-    { id: 20, nome: "Campina do Barreto", municipio: "Recife" },
-    { id: 21, nome: "Campo Grande", municipio: "Recife" },
-    { id: 22, nome: "Casa Amarela", municipio: "Recife" },
-    { id: 23, nome: "Casa Forte", municipio: "Recife" },
-    { id: 24, nome: "Caxangá", municipio: "Recife" },
-    { id: 25, nome: "Cidade Universitária", municipio: "Recife" },
-    { id: 26, nome: "Coelhos", municipio: "Recife" },
-    { id: 27, nome: "Cohab", municipio: "Recife" },
-    { id: 28, nome: "Coqueiral", municipio: "Recife" },
-    { id: 29, nome: "Cordeiro", municipio: "Recife" },
-    { id: 30, nome: "Derby", municipio: "Recife" },
-    { id: 31, nome: "Dois Irmãos", municipio: "Recife" },
-    { id: 32, nome: "Dois Unidos", municipio: "Recife" },
-    { id: 33, nome: "Encruzilhada", municipio: "Recife" },
-    { id: 34, nome: "Engenho do Meio", municipio: "Recife" },
-    { id: 35, nome: "Espinheiro", municipio: "Recife" },
-    { id: 36, nome: "Estância", municipio: "Recife" },
-    { id: 37, nome: "Fundão", municipio: "Recife" },
-    { id: 38, nome: "Graças", municipio: "Recife" },
-    { id: 39, nome: "Guabiraba", municipio: "Recife" },
-    { id: 40, nome: "Hipódromo", municipio: "Recife" },
-    { id: 41, nome: "Ilha do Leite", municipio: "Recife" },
-    { id: 42, nome: "Ilha do Retiro", municipio: "Recife" },
-    { id: 43, nome: "Ilha Joana Bezerra", municipio: "Recife" },
-    { id: 44, nome: "Imbiribeira", municipio: "Recife" },
-    { id: 45, nome: "Ipsep", municipio: "Recife" },
-    { id: 46, nome: "Iputinga", municipio: "Recife" },
-    { id: 47, nome: "Jaqueira", municipio: "Recife" },
-    { id: 48, nome: "Jiquiá", municipio: "Recife" },
-    { id: 49, nome: "Jordão", municipio: "Recife" },
-    { id: 50, nome: "Linha do Tiro", municipio: "Recife" },
-    { id: 51, nome: "Macaxeira", municipio: "Recife" },
-    { id: 52, nome: "Madalena", municipio: "Recife" },
-    { id: 53, nome: "Mangabeira", municipio: "Recife" },
-    { id: 54, nome: "Mangueira", municipio: "Recife" },
-    { id: 55, nome: "Monteiro", municipio: "Recife" },
-    { id: 56, nome: "Morro da Conceição", municipio: "Recife" },
-    { id: 57, nome: "Mustardinha", municipio: "Recife" },
-    { id: 58, nome: "Nova Descoberta", municipio: "Recife" },
-    { id: 59, nome: "Paissandu", municipio: "Recife" },
-    { id: 60, nome: "Parnamirim", municipio: "Recife" },
-    { id: 61, nome: "Passarinho", municipio: "Recife" },
-    { id: 62, nome: "Pau Ferro", municipio: "Recife" },
-    { id: 63, nome: "Peixinhos", municipio: "Recife" },
-    { id: 64, nome: "Pina", municipio: "Recife" },
-    { id: 65, nome: "Poço", municipio: "Recife" },
-    { id: 66, nome: "Ponto de Parada", municipio: "Recife" },
-    { id: 67, nome: "Porto da Madeira", municipio: "Recife" },
-    { id: 68, nome: "Prado", municipio: "Recife" },
-    { id: 69, nome: "Recife", municipio: "Recife" },
-    { id: 70, nome: "Rosarinho", municipio: "Recife" },
-    { id: 71, nome: "San Martin", municipio: "Recife" },
-    { id: 72, nome: "Sancho", municipio: "Recife" },
-    { id: 73, nome: "Santana", municipio: "Recife" },
-    { id: 74, nome: "Santo Amaro", municipio: "Recife" },
-    { id: 75, nome: "Santo Antônio", municipio: "Recife" },
-    { id: 76, nome: "São José", municipio: "Recife" },
-    { id: 77, nome: "Sítio dos Pintos", municipio: "Recife" },
-    { id: 78, nome: "Soledade", municipio: "Recife" },
-    { id: 79, nome: "Tamarineira", municipio: "Recife" },
-    { id: 80, nome: "Tejipió", municipio: "Recife" },
-    { id: 81, nome: "Torre", municipio: "Recife" },
-    { id: 82, nome: "Torrões", municipio: "Recife" },
-    { id: 83, nome: "Totó", municipio: "Recife" },
-    { id: 84, nome: "Várzea", municipio: "Recife" },
-    { id: 85, nome: "Vasco da Gama", municipio: "Recife" },
-    { id: 86, nome: "Zumbi", municipio: "Recife" },
-
-    // Olinda
-    { id: 87, nome: "Águas Compridas", municipio: "Olinda" },
-    { id: 88, nome: "Alto da Nação", municipio: "Olinda" },
-    { id: 89, nome: "Alto da Conquista", municipio: "Olinda" },
-    { id: 90, nome: "Alto do Sol Nascente", municipio: "Olinda" },
-    { id: 91, nome: "Amparo", municipio: "Olinda" },
-    { id: 92, nome: "Bairro Novo", municipio: "Olinda" },
-    { id: 93, nome: "Bultrins", municipio: "Olinda" },
-    { id: 94, nome: "Casa Caiada", municipio: "Olinda" },
-    { id: 95, nome: "Carmo", municipio: "Olinda" },
-    { id: 96, nome: "Guadalupe", municipio: "Olinda" },
-    { id: 97, nome: "Jardim Brasil", municipio: "Olinda" },
-    { id: 98, nome: "Jardim Atlântico", municipio: "Olinda" },
-    { id: 99, nome: "Monte", municipio: "Olinda" },
-    { id: 100, nome: "Ouro Preto", municipio: "Olinda" },
-    { id: 101, nome: "Peixinhos", municipio: "Olinda" },
-    { id: 102, nome: "Rio Doce", municipio: "Olinda" },
-    { id: 103, nome: "Salgadinho", municipio: "Olinda" },
-    { id: 104, nome: "Santa Tereza", municipio: "Olinda" },
-    { id: 105, nome: "Sapucaia", municipio: "Olinda" },
-    { id: 106, nome: "São Benedito", municipio: "Olinda" },
-    { id: 107, nome: "Tabajara", municipio: "Olinda" },
-    { id: 108, nome: "Varadouro", municipio: "Olinda" },
-
-    // Jaboatão dos Guararapes
-    { id: 109, nome: "Alto da Bela Vista", municipio: "Jaboatão dos Guararapes" },
-    { id: 110, nome: "Barra de Jangada", municipio: "Jaboatão dos Guararapes" },
-    { id: 111, nome: "Cajueiro Seco", municipio: "Jaboatão dos Guararapes" },
-    { id: 112, nome: "Candeias", municipio: "Jaboatão dos Guararapes" },
-    { id: 113, nome: "Cavaleiro", municipio: "Jaboatão dos Guararapes" },
-    { id: 114, nome: "Centro", municipio: "Jaboatão dos Guararapes" },
-    { id: 115, nome: "Comportas", municipio: "Jaboatão dos Guararapes" },
-    { id: 116, nome: "Curado", municipio: "Jaboatão dos Guararapes" },
-    { id: 117, nome: "Dois Carneiros", municipio: "Jaboatão dos Guararapes" },
-    { id: 118, nome: "Engenho Velho", municipio: "Jaboatão dos Guararapes" },
-    { id: 119, nome: "Floriano", municipio: "Jaboatão dos Guararapes" },
-    { id: 120, nome: "Guararapes", municipio: "Jaboatão dos Guararapes" },
-    { id: 121, nome: "Jardim Piedade", municipio: "Jaboatão dos Guararapes" },
-    { id: 122, nome: "Jaboatão", municipio: "Jaboatão dos Guararapes" },
-    { id: 123, nome: "Jardim São Paulo", municipio: "Jaboatão dos Guararapes" },
-    { id: 124, nome: "Marcos Freire", municipio: "Jaboatão dos Guararapes" },
-    { id: 125, nome: "Muribeca", municipio: "Jaboatão dos Guararapes" },
-    { id: 126, nome: "Piedade", municipio: "Jaboatão dos Guararapes" },
-    { id: 127, nome: "Prazeres", municipio: "Jaboatão dos Guararapes" },
-    { id: 128, nome: "Socorro", municipio: "Jaboatão dos Guararapes" },
-    { id: 129, nome: "Sucupira", municipio: "Jaboatão dos Guararapes" },
-    { id: 130, nome: "Tabatinga", municipio: "Jaboatão dos Guararapes" },
-    { id: 131, nome: "Tejipió", municipio: "Jaboatão dos Guararapes" },
-    { id: 132, nome: "Vila Rica", municipio: "Jaboatão dos Guararapes" }
-
-        ];
-
-        const tiposEquipamentos = {
-            restaurante: "Restaurante Popular",
+        const tiposNomes = {
             cozinha: "Cozinha Comunitária",
-            CRAS: "Centro de Referência de Assistência Social",
-            CREAS: "Centro de Referência Especializado de Assistência Social",
-            CadÚnico: "Centro de Atendimento ao CadÚnico",
-            CentroPOP: "Centro de Referência Especializado para População em Situação de Rua",
+            restaurante: "Restaurante Popular",
+            CRAS: "CRAS",
+            CREAS: "CREAS"
         };
 
-        // Municípios de Pernambuco
-        const municipiosPE = [
-            "Todos os municípios",
-            "Recife",
-            "Olinda",
-            "Jaboatão dos Guararapes",
-            "Caruaru",
-            "Petrolina",
-            "Paulista",
-            "Cabo de Santo Agostinho",
-            "Camaragibe",
-            "Garanhuns",
-            "Vitória de Santo Antão",
-            "Ipojuca",
-            "São Lourenço da Mata",
-            "Abreu e Lima",
-            "Igarassu",
-            "Santa Cruz do Capibaribe",
-            "Belo Jardim",
-            "Serra Talhada",
-            "Araripina",
-            "Goiana",
-            "Gravatá",
-            "Carpina",
-            "Bezerros",
-            "Escada",
-            "Moreno",
-            "São Bento do Una",
-            "Palmares",
-            "Pesqueira",
-            "Salgueiro",
-            "Bodocó"
-        ];
-
-        // Estado da aplicação
-        let currentUser = null;
         let currentPage = 'dashboard';
-        let editingUserId = null;
-        let editingRoleId = null;
-        let equipamentoSelecionado = null;
-        let bairrosSelecionados = [];
 
         // Inicialização
-        document.addEventListener('DOMContentLoaded', function() {
-            // Evento de login
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                // Simulação de login
-                if (username === 'admin' && password === 'admin123') {
-                    currentUser = {
-                        id: 1,
-                        name: "Wagne Cabral",
-                        role: "admin"
-                    };
-                    
-                    document.getElementById('loginError').style.display = 'none';
-                    document.getElementById('login-page').classList.add('hidden');
-                    document.getElementById('admin-panel').classList.remove('hidden');
-                    document.getElementById('current-user').textContent = currentUser.name;
-                    showPage('dashboard');
-                } else {
-                    document.getElementById('loginError').style.display = 'block';
-                }
-            });
-
-            // Evento para status do usuário
-            document.getElementById('user-status')?.addEventListener('change', function() {
-                document.getElementById('status-text').textContent = this.checked ? 'Ativo' : 'Inativo';
-            });
-
-            // Configurar event listeners para Gestão de Equipamentos
-            configurarEventListenersEquipamentos();
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('form-equipment').addEventListener('submit', saveEquipment);
         });
 
-        // Funções de navegação
-        function showPage(page) {
-            currentPage = page;
-            updateNavMenu();
-            renderContent();
-        }
+        // Autenticação
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
 
-        function toggleSubmenu(element) {
-            const submenu = element.nextElementSibling;
-            if (submenu.style.display === 'block') {
-                submenu.style.display = 'none';
+            if (user === 'admin' && pass === 'admin123') {
+                document.getElementById('login-page').classList.add('hidden');
+                document.getElementById('admin-panel').classList.remove('hidden');
+                showPage('dashboard');
             } else {
-                submenu.style.display = 'block';
+                const err = document.getElementById('loginError');
+                err.style.display = 'block';
+                setTimeout(() => err.style.display = 'none', 3000);
             }
-        }
-
-        function updateNavMenu() {
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            const activeLink = document.querySelector(`.nav-link[onclick="showPage('${currentPage}')"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-        }
-
-        function renderContent() {
-            const contentElement = document.getElementById('main-content');
-            
-            switch(currentPage) {
-                case 'dashboard':
-                    renderDashboard(contentElement);
-                    break;
-                case 'users':
-                    renderUsers(contentElement);
-                    break;
-                case 'roles':
-                    renderRoles(contentElement);
-                    break;
-                case 'equipment-management':
-                    renderEquipmentManagement(contentElement);
-                    break;
-                case 'report-municipality':
-                    renderReportMunicipality(contentElement);
-                    break;
-                default:
-                    renderDashboard(contentElement);
-            }
-        }
-
-        // Renderização do Dashboard
-        function renderDashboard(container) {
-            container.innerHTML = `
-                <div class="content-header">
-                    <h1 class="page-title"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
-                    <div class="btn-group">
-                        <button class="btn btn-outline">
-                            <i class="fas fa-sync-alt"></i> Atualizar
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="dashboard-grid">
-                    <!-- Card 1: Total de Indivíduos -->
-                    <div class="dashboard-card">
-                        <div class="dashboard-card-title">Total de Indivíduos</div>
-                        <div class="dashboard-card-value">${dashboardData.totalIndividuos.toLocaleString()}</div>
-                    </div>
-                    
-                    <!-- Card 2: Localizados no CadÚnico -->
-                    <div class="dashboard-card">
-                        <div class="dashboard-card-title">Localizados no CadÚnico</div>
-                        <div class="dashboard-card-value">${dashboardData.localizados.toLocaleString()}</div>
-                        <div class="tooltip">Não localizados: ${dashboardData.naoLocalizados.toLocaleString()}</div>
-                    </div>
-                    
-                    <!-- Card 3: Perfil do Usuário -->
-                    <div class="dashboard-card">
-                        <div class="dashboard-card-title">Perfil do Usuário</div>
-                        <div class="mini-chart">
-                            <div class="mini-bar" style="height: 80%; background-color: #3b82f6;"></div>
-                            <div class="mini-bar" style="height: 60%; background-color: #60a5fa;"></div>
-                            <div class="mini-bar" style="height: 40%; background-color: #93c5fd;"></div>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.75rem;">
-                            <span>Para mim</span>
-                            <span>Outra</span>
-                            <span>Prof.</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 4: Situação de Rua -->
-                    <div class="dashboard-card">
-                        <div class="dashboard-card-title">Em Situação de Rua</div>
-                        <div class="dashboard-card-value">${dashboardData.situacaoRua.toLocaleString()}</div>
-                    </div>
-                    
-                    <!-- Card 5: Nome Social -->
-                    <div class="dashboard-card">
-                        <div class="dashboard-card-title">% Uso de Nome Social</div>
-                        <div class="dashboard-card-value dashboard-card-percentage">${dashboardData.nomeSocial}%</div>
-                    </div>
-                    
-                    <!-- Card 6: Estrangeiros -->
-                    <div class="dashboard-card">
-                        <div class="dashboard-card-title">Estrangeiros</div>
-                        <div class="dashboard-card-value">${dashboardData.estrangeiros.toLocaleString()}</div>
-                    </div>
-                </div>
-
-                <div class="dashboard-charts-container">
-                    <!-- Top 5 Municípios -->
-                    <div class="dashboard-chart">
-                        <div class="dashboard-chart-title">Top 5 Municípios</div>
-                        <div class="dashboard-chart-content">
-                            <canvas id="municipiosChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <!-- Mapa de Calor -->
-                    <div class="dashboard-chart">
-                        <div class="dashboard-chart-title">Mapa de Calor Municipal</div>
-                        <div class="heatmap">
-                            <div class="heatmap-cell" style="background-color: #3b82f6;">Recife</div>
-                            <div class="heatmap-cell" style="background-color: #60a5fa;">Jaboatão</div>
-                            <div class="heatmap-cell" style="background-color: #93c5fd;">Olinda</div>
-                            <div class="heatmap-cell" style="background-color: #bfdbfe;">Caruaru</div>
-                            <div class="heatmap-cell" style="background-color: #dbeafe;">Petrolina</div>
-                            
-                            <div class="heatmap-cell" style="background-color: #60a5fa;">Camaragibe</div>
-                            <div class="heatmap-cell" style="background-color: #93c5fd;">Paulista</div>
-                            <div class="heatmap-cell" style="background-color: #bfdbfe;">Cabo</div>
-                            <div class="heatmap-cell" style="background-color: #dbeafe;">Vitória</div>
-                            <div class="heatmap-cell" style="background-color: #eff6ff;">Garanhuns</div>
-                            
-                            <div class="heatmap-cell" style="background-color: #93c5fd;">Igarassu</div>
-                            <div class="heatmap-cell" style="background-color: #bfdbfe;">Abreu e Lima</div>
-                            <div class="heatmap-cell" style="background-color: #dbeafe;">São Lourenço</div>
-                            <div class="heatmap-cell" style="background-color: #eff6ff;">Ipojuca</div>
-                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Goiana</div>
-                            
-                            <div class="heatmap-cell" style="background-color: #bfdbfe;">Moreno</div>
-                            <div class="heatmap-cell" style="background-color: #dbeafe;">Escada</div>
-                            <div class="heatmap-cell" style="background-color: #eff6ff;">Ribeirão</div>
-                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Carpina</div>
-                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Limoeiro</div>
-                            
-                            <div class="heatmap-cell" style="background-color: #dbeafe;">Palmares</div>
-                            <div class="heatmap-cell" style="background-color: #eff6ff;">Bezerros</div>
-                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Serra Talhada</div>
-                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Arcoverde</div>
-                            <div class="heatmap-cell" style="background-color: #f0f9ff;">Salgueiro</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Distribuição por Gênero -->
-                    <div class="dashboard-chart">
-                        <div class="dashboard-chart-title">Distribuição por Gênero</div>
-                        <div class="dashboard-chart-content">
-                            <canvas id="generoChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <!-- Perfil da Persona -->
-                    <div class="dashboard-chart">
-                        <div class="dashboard-chart-title">Perfil da Persona</div>
-                        <div class="dashboard-chart-content">
-                            <canvas id="personaChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <!-- Evolução Temporal -->
-                    <div class="dashboard-chart">
-                        <div class="dashboard-chart-title">Evolução Mensal</div>
-                        <div class="dashboard-chart-content">
-                            <canvas id="evolucaoChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <!-- Faixa Etária -->
-                    <div class="dashboard-chart">
-                        <div class="dashboard-chart-title">Faixa Etária</div>
-                        <div class="dashboard-chart-content">
-                            <canvas id="idadeChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="app-footer">
-                    Dados atualizados em: ${new Date().toLocaleString('pt-BR')} | © Sistema PE sem Fome ${new Date().getFullYear()}
-                </div>
-            `;
-            
-            // Inicializar gráficos
-            setTimeout(initDashboardCharts, 100);
-        }
-
-        // Função para inicializar os gráficos do dashboard
-        function initDashboardCharts() {
-            // Gráfico de Top 5 Municípios
-            new Chart(document.getElementById('municipiosChart'), {
-                type: 'bar',
-                data: {
-                    labels: dashboardData.municipios.labels,
-                    datasets: [{
-                        label: 'Indivíduos',
-                        data: dashboardData.municipios.values,
-                        backgroundColor: [
-                            'rgba(59, 130, 246, 0.8)',
-                            'rgba(59, 130, 246, 0.7)',
-                            'rgba(59, 130, 246, 0.6)',
-                            'rgba(59, 130, 246, 0.5)',
-                            'rgba(59, 130, 246, 0.4)'
-                        ],
-                        borderColor: [
-                            'rgb(30, 58, 138)',
-                            'rgb(30, 58, 138)',
-                            'rgb(30, 58, 138)',
-                            'rgb(30, 58, 138)',
-                            'rgb(30, 58, 138)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    indexAxis: 'y',
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Número de Indivíduos'
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Gráfico de Distribuição por Gênero
-            new Chart(document.getElementById('generoChart'), {
-                type: 'bar',
-                data: {
-                    labels: dashboardData.genero.labels,
-                    datasets: [{
-                        label: 'Quantidade',
-                        data: dashboardData.genero.values,
-                        backgroundColor: [
-                            'rgba(239, 68, 68, 0.7)',
-                            'rgba(59, 130, 246, 0.7)',
-                            'rgba(139, 92, 246, 0.7)',
-                            'rgba(16, 185, 129, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgb(239, 68, 68)',
-                            'rgb(59, 130, 246)',
-                            'rgb(139, 92, 246)',
-                            'rgb(16, 185, 129)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            // Gráfico de Perfil da Persona
-            new Chart(document.getElementById('personaChart'), {
-                type: 'bar',
-                data: {
-                    labels: dashboardData.persona.labels,
-                    datasets: [{
-                        label: 'Quantidade',
-                        data: dashboardData.persona.values,
-                        backgroundColor: [
-                            'rgba(59, 130, 246, 0.7)',
-                            'rgba(245, 158, 11, 0.7)',
-                            'rgba(16, 185, 129, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgb(30, 58, 138)',
-                            'rgb(217, 119, 6)',
-                            'rgb(5, 150, 105)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            // Gráfico de Evolução Temporal
-            new Chart(document.getElementById('evolucaoChart'), {
-                type: 'line',
-                data: {
-                    labels: dashboardData.evolucao.labels,
-                    datasets: [{
-                        label: 'Indivíduos Cadastrados',
-                        data: dashboardData.evolucao.values,
-                        borderColor: 'rgb(59, 130, 246)',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        tension: 0.3,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false
-                        }
-                    }
-                }
-            });
-
-            // Gráfico de Faixa Etária
-            new Chart(document.getElementById('idadeChart'), {
-                type: 'bar',
-                data: {
-                    labels: dashboardData.idade.labels,
-                    datasets: [{
-                        label: 'Indivíduos',
-                        data: dashboardData.idade.values,
-                        backgroundColor: [
-                            'rgba(59, 130, 246, 0.6)',
-                            'rgba(59, 130, 246, 0.7)',
-                            'rgba(59, 130, 246, 0.8)',
-                            'rgba(59, 130, 246, 0.9)',
-                            'rgba(59, 130, 246, 1)'
-                        ],
-                        borderColor: [
-                            'rgb(30, 58, 138)',
-                            'rgb(30, 58, 138)',
-                            'rgb(30, 58, 138)',
-                            'rgb(30, 58, 138)',
-                            'rgb(30, 58, 138)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    indexAxis: 'y',
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
-            });
-        }
-
-        // Renderização da página de usuários
-        function renderUsers(container) {
-            container.innerHTML = `
-                <div class="content-header">
-                    <h1 class="page-title"><i class="fas fa-users"></i> Gerenciar Usuários</h1>
-                    <div class="btn-group">
-                        <button class="btn btn-primary" onclick="openUserModal()">
-                            <i class="fas fa-plus"></i> Novo Usuário
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>E-mail</th>
-                                    <th>CPF</th>
-                                    <th>Perfil</th>
-                                    <th>Status</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${users.map(user => `
-                                    <tr>
-                                        <td>${user.name}</td>
-                                        <td>${user.email}</td>
-                                        <td>${user.cpf}</td>
-                                        <td>
-                                            <span class="badge">
-                                                ${roles.find(r => r.id === user.role)?.name || user.role}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" ${user.status ? 'checked' : ''} 
-                                                    onchange="toggleUserStatus(${user.id}, this)">
-                                                <span class="slider"></span>
-                                            </label>
-                                        </td>
-                                        <td class="actions">
-                                            <button class="btn btn-sm" onclick="editUser(${user.id})">
-                                                <i class="fas fa-edit"></i> Editar
-                                            </button>
-                                            <button class="btn btn-sm" onclick="deleteUser(${user.id})">
-                                                <i class="fas fa-trash"></i> Excluir
-                                            </button>
-                                        </td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="app-footer">
-                    Total de usuários: ${users.length}
-                </div>
-            `;
-        }
-
-        // Renderização da página de perfis
-        function renderRoles(container) {
-            container.innerHTML = `
-                <div class="content-header">
-                    <h1 class="page-title"><i class="fas fa-user-shield"></i> Gerenciar Perfis</h1>
-                    <div class="btn-group">
-                        <button class="btn btn-primary" onclick="openRoleModal()">
-                            <i class="fas fa-plus"></i> Novo Perfil
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Descrição</th>
-                                    <th>Permissões</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${roles.map(role => `
-                                    <tr>
-                                        <td>${role.name}</td>
-                                        <td>${role.description}</td>
-                                        <td>
-                                            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-                                                ${role.permissions.map(perm => `
-                                                    <span class="badge">${perm}</span>
-                                                `).join('')}
-                                            </div>
-                                        </td>
-                                        <td class="actions">
-                                            <button class="btn btn-sm" onclick="editRole('${role.id}')">
-                                                <i class="fas fa-edit"></i> Editar
-                                            </button>
-                                            ${role.id !== 'admin' ? `
-                                                <button class="btn btn-sm" onclick="deleteRole('${role.id}')">
-                                                    <i class="fas fa-trash"></i> Excluir
-                                                </button>
-                                            ` : ''}
-                                        </td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="app-footer">
-                    Total de perfis: ${roles.length}
-                </div>
-            `;
-        }
-
-        // Renderização da Gestão de Equipamentos por Bairros
-        function renderEquipmentManagement(container) {
-            container.innerHTML = `
-                <div class="content-header">
-                    <h1 class="page-title"><i class="fas fa-utensils"></i> Gestão de Equipamentos por Bairros</h1>
-                    <div>
-                        <button class="btn btn-primary" id="btn-novo-equipamento">
-                            <i class="fas fa-plus"></i> Novo Equipamento
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Lista de Equipamentos</h3>
-                        <div class="search-box">
-                            <input type="text" placeholder="Buscar equipamento..." id="buscar-equipamento" class="form-control">
-                            <button class="btn btn-primary">Buscar</button>
-                        </div>
-                    </div>
-                    
-                    <div class="filter-row">
-                        <div class="filter-group">
-                            <label class="form-label">Filtrar por Município</label>
-                            <select id="filtro-municipio" class="form-control">
-                                <option value="">Todos os municípios</option>
-                                <option value="1">Recife</option>
-                                <option value="2">Olinda</option>
-                                <option value="3">Jaboatão dos Guararapes</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label class="form-label">Filtrar por Tipo</label>
-                            <select id="filtro-tipo" class="form-control">
-                                <option value="">Todos os tipos</option>
-                                <option value="restaurante">Restaurante Popular</option>
-                                <option value="cozinha">Cozinha Comunitária</option>
-                                <option value="CRAS">CRAS</option>
-                                <option value="CREAS">CREAS</option>
-                                <option value="CentroPOP">Centro POP</option>
-                                <option value="CadÚnico">Posto CadÚnico</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Nome do Equipamento</th>
-                                    <th>Tipo</th>
-                                    <th>Município</th>
-                                    <th>Bairros Vinculados</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="lista-equipamentos">
-                                <!-- Dados serão carregados via JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="empty-state" id="empty-state-equipamentos" style="display: none;">
-                        <i>📋</i>
-                        <h3>Nenhum equipamento encontrado</h3>
-                        <p>Clique em "Novo Equipamento" para adicionar um equipamento ao sistema.</p>
-                    </div>
-                </div>
-                
-                <div class="app-footer">
-                    Sistema PE sem Fome &copy; ${new Date().getFullYear()} - Gestão de Equipamentos por Bairros
-                </div>
-            `;
-            
-            // Carregar lista de equipamentos
-            carregarListaEquipamentos();
-            
-            // Configurar event listeners
-            document.getElementById('btn-novo-equipamento').addEventListener('click', function() {
-                mostrarAlerta('Funcionalidade de cadastro de equipamentos será implementada.', 'success');
-            });
-        }
-
-        // Renderização do Relatório por Município
-        function renderReportMunicipality(container) {
-            container.innerHTML = `
-                <div class="content-header">
-                    <h1 class="page-title"><i class="fas fa-map-marker-alt"></i> Relatório de Indivíduo por Município</h1>
-                    <div class="btn-group">
-                        <button class="btn btn-primary" onclick="exportPDF()">
-                            <i class="fas fa-file-pdf"></i> Exportar PDF
-                        </button>
-                        <button class="btn btn-secondary" onclick="exportCSV()">
-                            <i class="fas fa-file-csv"></i> Exportar CSV
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="filter-box">
-                    <div class="filter-row">
-                        <div class="filter-group">
-                            <label class="form-label">Município</label>
-                            <select id="municipio" class="form-control">
-                                ${municipiosPE.map(m => `<option value="${m}">${m}</option>`).join('')}
-                            </select>
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label class="form-label">Data Início</label>
-                            <input type="date" id="data-inicio" class="form-control" value="2025-01-01">
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label class="form-label">Data Fim</label>
-                            <input type="date" id="data-fim" class="form-control" value="2025-12-31">
-                        </div>
-                    </div>
-                    
-                    <div class="btn-group">
-                        <button class="btn btn-primary" onclick="applyFilters()">
-                            <i class="fas fa-filter"></i> Filtrar
-                        </button>
-                        <button class="btn btn-outline" onclick="resetFilters()">
-                            <i class="fas fa-undo"></i> Limpar Filtros
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Município</th>
-                                    <th>Total</th>
-                                    <th>Localizados</th>
-                                    <th>Não Localizados</th>
-                                    <th>% Situação de Rua</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${reportData.map(item => `
-                                    <tr>
-                                        <td>${item.municipio}</td>
-                                        <td>${item.total.toLocaleString()}</td>
-                                        <td>${item.localizados.toLocaleString()}</td>
-                                        <td>${item.naoLocalizados.toLocaleString()}</td>
-                                        <td>${item.situacaoRua}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="app-footer">
-                    Sistema PE sem Fome &copy; ${new Date().getFullYear()} - Relatório gerado em: ${new Date().toLocaleDateString()}
-                </div>
-            `;
-        }
-
-        // Funções para Gestão de Equipamentos por Bairros
-        function configurarEventListenersEquipamentos() {
-            // Tabs
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('tab')) {
-                    const tabId = e.target.getAttribute('data-tab');
-                    ativarTab(tabId);
-                }
-            });
-            
-            // Seleção de município para bairros
-            document.addEventListener('change', function(e) {
-                if (e.target.id === 'select-municipio-bairro') {
-                    const municipioId = e.target.value;
-                    carregarBairrosDisponiveis(municipioId);
-                }
-            });
-            
-            // Botão para vincular bairros
-            document.addEventListener('click', function(e) {
-                if (e.target.id === 'btn-vincular-bairros') {
-                    vincularBairros();
-                }
-            });
-        }
-
-        function carregarListaEquipamentos() {
-            const tbody = document.getElementById('lista-equipamentos');
-            const emptyState = document.getElementById('empty-state-equipamentos');
-            
-            if (equipamentos.length === 0) {
-                tbody.innerHTML = '';
-                emptyState.style.display = 'block';
-                return;
-            }
-            
-            emptyState.style.display = 'none';
-            
-            let html = '';
-            equipamentos.forEach(equipamento => {
-                const bairrosVinculados = equipamento.bairros.map(id => {
-                    const bairro = bairros.find(b => b.id === id);
-                    return bairro ? bairro.nome : '';
-                }).filter(nome => nome !== '');
-                
-                html += `
-                    <tr>
-                        <td>${equipamento.nome}</td>
-                        <td><span class="badge badge-primary">${tiposEquipamentos[equipamento.tipo]}</span></td>
-                        <td>${equipamento.municipio}</td>
-                        <td>${bairrosVinculados.length} bairro(s)</td>
-                        <td class="actions">
-                            <button class="btn btn-primary" onclick="abrirModalBairros(${equipamento.id})">
-                                <i class="fas fa-link"></i> Gerenciar Bairros
-                            </button>
-                            <button class="btn btn-outline" onclick="editarEquipamento(${equipamento.id})">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            tbody.innerHTML = html;
-        }
-
-        function abrirModalBairros(equipamentoId) {
-            equipamentoSelecionado = equipamentos.find(e => e.id === equipamentoId);
-            
-            if (!equipamentoSelecionado) return;
-            
-            // Preencher informações do equipamento
-            document.getElementById('nome-equipamento-modal').textContent = equipamentoSelecionado.nome;
-            document.getElementById('tipo-equipamento-modal').textContent = tiposEquipamentos[equipamentoSelecionado.tipo];
-            document.getElementById('municipio-equipamento-modal').textContent = equipamentoSelecionado.municipio;
-            document.getElementById('endereco-equipamento-modal').textContent = equipamentoSelecionado.endereco;
-            
-            // Carregar bairros vinculados
-            carregarBairrosVinculados();
-            
-            // Resetar seleção de município e bairros
-            document.getElementById('select-municipio-bairro').value = '';
-            document.getElementById('lista-bairros-disponiveis').innerHTML = '';
-            
-            // Mostrar modal
-            document.getElementById('modal-bairros').classList.remove('hidden');
-        }
-
-        function carregarBairrosVinculados() {
-            const container = document.getElementById('lista-bairros-vinculados');
-            const emptyState = document.getElementById('empty-state-bairros-vinculados');
-            
-            if (!equipamentoSelecionado || !equipamentoSelecionado.bairros || equipamentoSelecionado.bairros.length === 0) {
-                container.innerHTML = '';
-                emptyState.style.display = 'block';
-                return;
-            }
-            
-            emptyState.style.display = 'none';
-            
-            let html = '';
-            equipamentoSelecionado.bairros.forEach(bairroId => {
-                const bairro = bairros.find(b => b.id === bairroId);
-                if (bairro) {
-                    html += `
-                        <div class="bairro-item">
-                            <div>
-                                <strong>${bairro.nome}</strong>
-                                <div style="font-size: 0.875rem; color: #666;">${bairro.municipio}</div>
-                            </div>
-                            <button class="btn btn-danger" onclick="solicitarRemocaoBairro(${bairro.id})">
-                                <i class="fas fa-trash"></i> Remover
-                            </button>
-                        </div>
-                    `;
-                }
-            });
-            
-            container.innerHTML = html;
-        }
-
-        function carregarBairrosDisponiveis(municipioId) {
-            const container = document.getElementById('lista-bairros-disponiveis');
-            
-            if (!municipioId) {
-                container.innerHTML = '<div class="empty-state"><p>Selecione um município para carregar os bairros</p></div>';
-                return;
-            }
-            
-            const municipio = municipioId === '1' ? 'Recife' : 
-                             municipioId === '2' ? 'Olinda' : 
-                             municipioId === '3' ? 'Jaboatão dos Guararapes' : '';
-            
-            const bairrosMunicipio = bairros.filter(b => b.municipio === municipio);
-            
-            if (bairrosMunicipio.length === 0) {
-                container.innerHTML = '<div class="empty-state"><p>Nenhum bairro encontrado para este município</p></div>';
-                return;
-            }
-            
-            let html = '';
-            bairrosMunicipio.forEach(bairro => {
-                // Verificar se o bairro já está vinculado
-                const jaVinculado = equipamentoSelecionado.bairros.includes(bairro.id);
-                
-                html += `
-                    <div class="multiselect-item">
-                        <input type="checkbox" id="bairro-${bairro.id}" value="${bairro.id}" ${jaVinculado ? 'disabled' : ''} onchange="toggleBairroSelecionado(${bairro.id}, this.checked)">
-                        <label for="bairro-${bairro.id}" style="${jaVinculado ? 'color: #999;' : ''}">${bairro.nome} ${jaVinculado ? '(já vinculado)' : ''}</label>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
-        }
-
-        function toggleBairroSelecionado(bairroId, selecionado) {
-            if (selecionado) {
-                if (!bairrosSelecionados.includes(bairroId)) {
-                    bairrosSelecionados.push(bairroId);
-                }
-            } else {
-                const index = bairrosSelecionados.indexOf(bairroId);
-                if (index > -1) {
-                    bairrosSelecionados.splice(index, 1);
-                }
-            }
-        }
-
-        function vincularBairros() {
-            if (bairrosSelecionados.length === 0) {
-                mostrarAlerta('Selecione pelo menos um bairro para vincular.', 'error');
-                return;
-            }
-            
-            // Simular adição dos bairros
-            bairrosSelecionados.forEach(bairroId => {
-                if (!equipamentoSelecionado.bairros.includes(bairroId)) {
-                    equipamentoSelecionado.bairros.push(bairroId);
-                }
-            });
-            
-            // Atualizar lista de bairros vinculados
-            carregarBairrosVinculados();
-            
-            // Limpar seleção
-            bairrosSelecionados = [];
-            document.getElementById('select-municipio-bairro').value = '';
-            document.getElementById('lista-bairros-disponiveis').innerHTML = '';
-            
-            // Mostrar mensagem de sucesso
-            mostrarAlerta('Vínculos de bairros atualizados com sucesso.', 'success');
-            
-            // Voltar para a aba de bairros vinculados
-            ativarTab('bairros-vinculados');
-        }
-
-        function solicitarRemocaoBairro(bairroId) {
-            const bairro = bairros.find(b => b.id === bairroId);
-            if (!bairro) return;
-            
-            document.getElementById('mensagem-confirmacao').textContent = 
-                `Tem certeza que deseja remover o vínculo entre "${equipamentoSelecionado.nome}" e o bairro "${bairro.nome}"?`;
-            
-            document.getElementById('btn-confirmar-acao').onclick = function() {
-                removerVinculoBairro(bairroId);
-            };
-            
-            document.getElementById('modal-confirmacao').classList.remove('hidden');
-        }
-
-        function removerVinculoBairro(bairroId) {
-            const index = equipamentoSelecionado.bairros.indexOf(bairroId);
-            if (index > -1) {
-                equipamentoSelecionado.bairros.splice(index, 1);
-            }
-            
-            // Atualizar lista de bairros vinculados
-            carregarBairrosVinculados();
-            
-            // Fechar modal de confirmação
-            document.getElementById('modal-confirmacao').classList.add('hidden');
-            
-            // Mostrar mensagem de sucesso
-            mostrarAlerta('Vínculo removido com sucesso.', 'success');
-        }
-
-        function ativarTab(tabId) {
-            // Desativar todas as abas
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Ativar aba selecionada
-            document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
-
-        function editarEquipamento(equipamentoId) {
-            mostrarAlerta(`Funcionalidade de edição do equipamento ${equipamentoId} será implementada.`, 'success');
-        }
-
-        // Funções para relatório
-        function applyFilters() {
-            const municipio = document.getElementById('municipio').value;
-            const dataInicio = document.getElementById('data-inicio').value;
-            const dataFim = document.getElementById('data-fim').value;
-            
-            alert(`Filtros aplicados:\nMunicípio: ${municipio}\nData Início: ${dataInicio}\nData Fim: ${dataFim}`);
-            // Aqui viria a lógica para filtrar os dados
-        }
-
-        function resetFilters() {
-            document.getElementById('municipio').value = "Todos os municípios";
-            document.getElementById('data-inicio').value = "2025-01-01";
-            document.getElementById('data-fim').value = "2025-12-31";
-            alert('Filtros resetados!');
-        }
-
-        function exportPDF() {
-            alert('Exportando relatório para PDF...');
-            // Lógica para exportar PDF
-        }
-
-        function exportCSV() {
-            alert('Exportando relatório para CSV...');
-            // Lógica para exportar CSV
-        }
-
-        // Funções para usuários
-        function openUserModal(userId = null) {
-            const modal = document.getElementById('modal-user');
-            editingUserId = userId;
-            
-            if (userId) {
-                const user = users.find(u => u.id === userId);
-                if (user) {
-                    document.querySelector('.modal-title').textContent = 'Editar Usuário';
-                    document.getElementById('user-name').value = user.name;
-                    document.getElementById('user-cpf').value = user.cpf;
-                    document.getElementById('user-email').value = user.email;
-                    document.getElementById('user-role').value = user.role;
-                    document.getElementById('user-status').checked = user.status;
-                    document.getElementById('status-text').textContent = user.status ? 'Ativo' : 'Inativo';
-                }
-            } else {
-                document.querySelector('.modal-title').textContent = 'Cadastrar Usuário';
-                document.getElementById('user-name').value = '';
-                document.getElementById('user-cpf').value = '';
-                document.getElementById('user-email').value = '';
-                document.getElementById('user-role').value = '';
-                document.getElementById('user-status').checked = true;
-                document.getElementById('status-text').textContent = 'Ativo';
-            }
-            
-            modal.classList.remove('hidden');
-        }
-
-        function saveUser() {
-            const name = document.getElementById('user-name').value;
-            const cpf = document.getElementById('user-cpf').value;
-            const email = document.getElementById('user-email').value;
-            const role = document.getElementById('user-role').value;
-            const status = document.getElementById('user-status').checked;
-            
-            if (!name || !cpf || !email || !role) {
-                alert('Preencha todos os campos obrigatórios!');
-                return;
-            }
-            
-            if (editingUserId) {
-                // Editar usuário existente
-                const index = users.findIndex(u => u.id === editingUserId);
-                if (index !== -1) {
-                    users[index] = {
-                        ...users[index],
-                        name,
-                        cpf,
-                        email,
-                        role,
-                        status
-                    };
-                }
-            } else {
-                // Criar novo usuário
-                const newId = Math.max(...users.map(u => u.id), 0) + 1;
-                users.push({
-                    id: newId,
-                    name,
-                    cpf,
-                    email,
-                    role,
-                    status
-                });
-            }
-            
-            closeModal();
-            renderUsers(document.getElementById('main-content'));
-            alert('Usuário salvo com sucesso!');
-        }
-
-        function editUser(userId) {
-            openUserModal(userId);
-        }
-
-        function deleteUser(userId) {
-            if (confirm('Tem certeza que deseja excluir este usuário?')) {
-                users = users.filter(u => u.id !== userId);
-                renderUsers(document.getElementById('main-content'));
-                alert('Usuário excluído com sucesso!');
-            }
-        }
-
-        function toggleUserStatus(userId, checkbox) {
-            const status = checkbox.checked;
-            const user = users.find(u => u.id === userId);
-            if (user) {
-                user.status = status;
-            }
-        }
-
-        // Funções para perfis
-        function openRoleModal(roleId = null) {
-            const modal = document.getElementById('modal-role');
-            editingRoleId = roleId;
-            
-            if (roleId) {
-                const role = roles.find(r => r.id === roleId);
-                if (role) {
-                    document.querySelector('.modal-title').textContent = 'Editar Perfil';
-                    document.getElementById('role-name').value = role.name;
-                    document.getElementById('role-description').value = role.description;
-                    
-                    // Marcar as permissões
-                    role.permissions.forEach(perm => {
-                        const checkbox = document.getElementById(`perm-${perm}`);
-                        if (checkbox) checkbox.checked = true;
-                    });
-                }
-            } else {
-                document.querySelector('.modal-title').textContent = 'Cadastrar Perfil';
-                document.getElementById('role-name').value = '';
-                document.getElementById('role-description').value = '';
-                
-                // Desmarcar todas as permissões
-                document.querySelectorAll('#modal-role input[type="checkbox"]').forEach(cb => {
-                    cb.checked = false;
-                });
-            }
-            
-            modal.classList.remove('hidden');
-        }
-
-        function saveRole() {
-            const name = document.getElementById('role-name').value;
-            const description = document.getElementById('role-description').value;
-            
-            if (!name) {
-                alert('Preencha o nome do perfil!');
-                return;
-            }
-            
-            // Obter permissões selecionadas
-            const permissions = [];
-            document.querySelectorAll('#modal-role input[type="checkbox"]:checked').forEach(cb => {
-                permissions.push(cb.value);
-            });
-            
-            if (editingRoleId) {
-                // Editar perfil existente
-                const index = roles.findIndex(r => r.id === editingRoleId);
-                if (index !== -1) {
-                    roles[index] = {
-                        ...roles[index],
-                        name,
-                        description,
-                        permissions
-                    };
-                }
-            } else {
-                // Criar novo perfil
-                const newId = name.toLowerCase().replace(/\s+/g, '-');
-                roles.push({
-                    id: newId,
-                    name,
-                    description,
-                    permissions
-                });
-            }
-            
-            closeModal();
-            renderRoles(document.getElementById('main-content'));
-            alert('Perfil salvo com sucesso!');
-        }
-
-        function editRole(roleId) {
-            openRoleModal(roleId);
-        }
-
-        function deleteRole(roleId) {
-            if (confirm('Tem certeza que deseja excluir este perfil?')) {
-                roles = roles.filter(r => r.id !== roleId);
-                renderRoles(document.getElementById('main-content'));
-                alert('Perfil excluído com sucesso!');
-            }
-        }
-
-        // Funções utilitárias
-        function closeModal() {
-            document.querySelectorAll('.modal-overlay').forEach(modal => {
-                modal.classList.add('hidden');
-            });
-            editingUserId = null;
-            editingRoleId = null;
-            equipamentoSelecionado = null;
-            bairrosSelecionados = [];
         }
 
         function handleLogout() {
-            currentUser = null;
-            document.getElementById('admin-panel').classList.add('hidden');
-            document.getElementById('login-page').classList.remove('hidden');
-            document.getElementById('loginForm').reset();
+            location.reload();
         }
 
-        function mostrarAlerta(mensagem, tipo) {
-            const alertContainer = document.getElementById('alert-container');
-            const alertId = 'alert-' + Date.now();
+        // Navegação
+        function showPage(page) {
+            currentPage = page;
+            updateSidebarUI();
+            const container = document.getElementById('main-content');
             
+            if (page === 'dashboard') renderDashboard(container);
+            else if (page === 'equipment') renderEquipmentPage(container);
+            else if (page === 'users') container.innerHTML = '<div class="card"><h3>Gestão de Usuários</h3><p>Módulo em desenvolvimento...</p></div>';
+            else if (page === 'report-municipality') container.innerHTML = '<div class="card"><h3>Relatório por Município</h3><p>Módulo em desenvolvimento...</p></div>';
+        }
+
+        function updateSidebarUI() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick')?.includes(currentPage)) link.classList.add('active');
+            });
+        }
+
+        function toggleSubmenu(el) {
+            const sub = el.nextElementSibling;
+            sub.style.display = sub.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Render Dashboard
+        function renderDashboard(container) {
+            container.innerHTML = `
+                <div class="content-header">
+                    <h1 class="page-title">Dashboard Operacional</h1>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-title">Total Indivíduos</div>
+                        <div class="dashboard-card-value">4.876</div>
+                        <div style="color: green; font-size: 0.8rem;"><i class="fas fa-arrow-up"></i> 12% este mês</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-title">Equipamentos</div>
+                        <div class="dashboard-card-value">${equipamentos.length}</div>
+                        <div style="font-size: 0.8rem;">Ativos no Estado</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-title">Situação de Rua</div>
+                        <div class="dashboard-card-value">1.367</div>
+                        <div style="color: var(--danger-color); font-size: 0.8rem;">Requer Atenção</div>
+                    </div>
+                </div>
+                <div class="dashboard-charts-container">
+                    <div class="dashboard-chart"><canvas id="chartMunicipios"></canvas></div>
+                    <div class="dashboard-chart"><canvas id="chartEvolucao"></canvas></div>
+                </div>
+            `;
+            initCharts();
+        }
+
+        function initCharts() {
+            new Chart(document.getElementById('chartMunicipios'), {
+                type: 'bar',
+                data: {
+                    labels: ['Recife', 'Jaboatão', 'Olinda', 'Caruaru'],
+                    datasets: [{ label: 'Indivíduos', data: [1200, 980, 750, 520], backgroundColor: '#1e3a8a' }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            new Chart(document.getElementById('chartEvolucao'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'],
+                    datasets: [{ label: 'Cadastros', data: [300, 450, 380, 520, 610], borderColor: '#4CAF50', fill: false }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        // Gestão de Equipamentos
+        function renderEquipmentPage(container) {
+            container.innerHTML = `
+                <div class="content-header">
+                    <h1 class="page-title">Equipamentos Sociais</h1>
+                    <button class="btn btn-primary" onclick="openEquipmentModal()"><i class="fas fa-plus"></i> Novo Equipamento</button>
+                </div>
+                <div class="card">
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                        <input type="text" id="searchEq" class="form-control" placeholder="Buscar por nome ou endereço..." onkeyup="filterEquipment()">
+                        <select id="filterTipo" class="form-control" style="max-width: 200px;" onchange="filterEquipment()">
+                            <option value="">Todos os Tipos</option>
+                            <option value="cozinha">Cozinha</option>
+                            <option value="CRAS">CRAS</option>
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Tipo</th>
+                                    <th>Município</th>
+                                    <th>Endereço</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="eq-table-body">
+                                ${renderEqRows(equipamentos)}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderEqRows(data) {
+            return data.map(eq => `
+                <tr>
+                    <td><strong>${eq.nome}</strong></td>
+                    <td><span class="badge badge-primary">${tiposNomes[eq.tipo]}</span></td>
+                    <td>${eq.municipio}</td>
+                    <td>${eq.endereco}</td>
+                    <td>
+                        <button class="btn btn-outline" style="padding: 5px 10px;" onclick="editEquipment(${eq.id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger" style="padding: 5px 10px;" onclick="deleteEquipment(${eq.id})"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterEquipment() {
+            const query = document.getElementById('searchEq').value.toLowerCase();
+            const tipo = document.getElementById('filterTipo').value;
+            
+            const filtered = equipamentos.filter(eq => {
+                const matchQuery = eq.nome.toLowerCase().includes(query) || eq.endereco.toLowerCase().includes(query);
+                const matchTipo = tipo === "" || eq.tipo === tipo;
+                return matchQuery && matchTipo;
+            });
+            
+            document.getElementById('eq-table-body').innerHTML = renderEqRows(filtered);
+        }
+
+        // Modal Logic
+        function openEquipmentModal(id = null) {
+            const modal = document.getElementById('modal-equipment');
+            const form = document.getElementById('form-equipment');
+            form.reset();
+            
+            if (id) {
+                const eq = equipamentos.find(e => e.id === id);
+                document.getElementById('modal-eq-title').innerText = "Editar Equipamento";
+                document.getElementById('eq-id').value = eq.id;
+                document.getElementById('eq-nome').value = eq.nome;
+                document.getElementById('eq-tipo').value = eq.tipo;
+                document.getElementById('eq-municipio').value = eq.municipio;
+                document.getElementById('eq-endereco').value = eq.endereco;
+            } else {
+                document.getElementById('modal-eq-title').innerText = "Novo Equipamento";
+                document.getElementById('eq-id').value = "";
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.add('hidden'));
+        }
+
+        function saveEquipment(e) {
+            e.preventDefault();
+            const id = document.getElementById('eq-id').value;
+            const data = {
+                id: id ? parseInt(id) : Date.now(),
+                nome: document.getElementById('eq-nome').value,
+                tipo: document.getElementById('eq-tipo').value,
+                municipio: document.getElementById('eq-municipio').value,
+                endereco: document.getElementById('eq-endereco').value,
+                bairros: []
+            };
+
+            if (id) {
+                const index = equipamentos.findIndex(eq => eq.id === parseInt(id));
+                equipamentos[index] = data;
+                showAlert("Equipamento atualizado com sucesso!", "success");
+            } else {
+                equipamentos.push(data);
+                showAlert("Equipamento cadastrado com sucesso!", "success");
+            }
+
+            closeModal();
+            showPage('equipment');
+        }
+
+        function deleteEquipment(id) {
+            if (confirm("Deseja realmente excluir este equipamento?")) {
+                equipamentos = equipamentos.filter(eq => eq.id !== id);
+                showPage('equipment');
+                showAlert("Equipamento removido.", "info");
+            }
+        }
+
+        // Utils
+        function showAlert(msg, type) {
+            const container = document.getElementById('alert-container');
             const alert = document.createElement('div');
-            alert.id = alertId;
-            alert.className = `alert alert-${tipo === 'error' ? 'error' : 'success'}`;
-            alert.textContent = mensagem;
+            const colors = { success: '#4CAF50', info: '#2196F3', error: '#F44336' };
             
-            alertContainer.appendChild(alert);
+            alert.style.cssText = `background: ${colors[type]}; color: white; padding: 15px 25px; border-radius: 5px; margin-bottom: 10px; box-shadow: var(--shadow); animation: slideIn 0.3s forwards;`;
+            alert.innerHTML = `<i class="fas fa-info-circle"></i> ${msg}`;
             
-            // Remover alerta após 5 segundos
+            container.appendChild(alert);
             setTimeout(() => {
-                const alertElement = document.getElementById(alertId);
-                if (alertElement) {
-                    alertElement.remove();
-                }
-            }, 5000);
+                alert.style.animation = "slideOut 0.3s forwards";
+                setTimeout(() => alert.remove(), 300);
+            }, 3000);
         }
     </script>
+
+    <style>
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+    </style>
 </body>
 </html>
